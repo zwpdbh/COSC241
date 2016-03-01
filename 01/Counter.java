@@ -10,11 +10,10 @@ import java.util.Scanner;
  * It read a file and return the number of words and lines.
  * @author Frank zhao
 */
-
 public class Counter {
 /**
  * It read a file and return the number of words and lines.
- * @param args fajkshdgfasdj
+ * @param args 
 */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -28,8 +27,6 @@ public class Counter {
                 eachLine.next();
             }
         }
-
-
         System.out.println("lines: " + lines + "\nwords: " + words);
     }
 }
