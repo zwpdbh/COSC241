@@ -1,0 +1,80 @@
+1. Change Hi to hi:
+class hi is public, should be declared in a file named hi.java
+
+2. Change Hello to hello
+None error
+
+3. remove the first quotation mark in the string
+unclosed string literal
+
+4. remove the last quotation mark in the string
+unclosed string iteral
+';' expected
+reached end of file while pasing
+1. Change Hi to hi:
+class hi is public, should be declared in a file named hi.java
+
+2. Change Hello to hello
+None error
+
+3. remove the first quotation mark in the string
+unclosed string literal
+
+4. remove the last quotation mark in the string
+unclosed string iteral
+';' expected
+reached end of file while pasing
+1. Change Hi to hi:
+class hi is public, should be declared in a file named hi.java
+
+2. Change Hello to hello
+None error
+
+3. remove the first quotation mark in the string
+unclosed string literal
+
+4. remove the last quotation mark in the string
+unclosed string iteral
+';' expected
+reached end of file while pasing
+1. Change Hi to hi:
+class hi is public, should be declared in a file named hi.java
+
+2. Change Hello to hello
+None error
+
+3. remove the first quotation mark in the string
+unclosed string literal
+
+4. remove the last quotation mark in the string
+unclosed string iteral
+';' expected
+reached end of file while pasing
+1. Change Hi to hi:
+class hi is public, should be declared in a file named hi.java
+
+2. Change Hello to hello
+None error
+
+3. remove the first quotation mark in the string
+unclosed string literal
+
+4. remove the last quotation mark in the string
+unclosed string iteral
+';' expected
+reached end of file while pasing
+
+5. change main to man:
+Exception in thread "main" java.lang.NoSuchMethodException: Hi.main
+
+6. change println to printline
+cannot find symbol
+symbol: method printline(java.lang.String)
+location: variable out of type java.io.PrintStream
+
+7. remove the semicolon at the end of the println statement
+';' expected
+
+8. remove the last brace in the program
+java: reached end of file while parsing
+
