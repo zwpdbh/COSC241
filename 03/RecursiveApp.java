@@ -13,14 +13,23 @@ public class RecursiveApp {
         System.out.println(sumOfDigit(-523));
         
         Tower t = new Tower();
-        t = t.add('a');
-        t = t.add('b');
-        t = t.add('c');
-        t = t.add('b');
+        String str = "123456";
+        for (int i = 0; i< str.length(); i++) {
+            t = t.add(str.charAt(i));
+        }
         
-        System.out.println("The number of block of b is : " + t.count('b'));
+        System.out.println("The number of block of 1 is: " + t.count('1'));
         System.out.println("The height of block of tower is: " + t.height());
         System.out.println(t);
+        
+        t.take(4);
+        System.out.println("The top 4 blocks of tower is: " + t);
+
+        System.out.println();
+        t.setTower("123456");
+        System.out.println("The current tower is:" + t);
+        t.remove(3);
+        System.out.println("After removing top 3 blocks, the rest tower is:" + t);
 
     }
 
@@ -55,4 +64,5 @@ public class RecursiveApp {
             return n%10 + sumOfDigit(n/10);
         }
     }
+
 }

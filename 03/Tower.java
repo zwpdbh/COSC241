@@ -54,7 +54,11 @@ public class Tower{
     public Tower add(char block) {
         return new Tower(block, this);
     }
-
+    
+    /**
+     * @param 
+     * @return int , represent the height of the tower
+     */
     public int height() {
         int sum = 0;
         Tower currentNode = this;
@@ -66,6 +70,10 @@ public class Tower{
         return sum;
     }
     
+    /**
+     * @param 
+     * @return int , represent the number of specific blocks in the tower
+     */
     public int count(char c) {
         int sum = 0;
         Tower currentNode = this;
@@ -86,6 +94,48 @@ public class Tower{
             currentNode = currentNode.rest;
         }
         
-        return "Tower: " + str;
+        return str;
+    }
+    
+    /**
+     *@param k
+     *keep the first to k th Node, get rid of the rest.
+     */
+    public void take(int k) {
+        int i = 1;
+        Tower currentNode = this;
+        while (i <= k && currentNode.rest != null) {
+            currentNode = currentNode.rest;
+            i++;
+        }
+        currentNode.rest = null;
+    }
+
+    /** removes the top k blocks
+     * @param k remove(int k)that removes the top k blocks
+     */
+    public void remove(int k) {
+        int i = 1;
+        Tower currentNode = this;
+        while (i <= k && currentNode.rest != null) {
+            currentNode = currentNode.rest;
+            i++;
+        }
+        
+        this.top = currentNode.top;
+        this.rest = currentNode.rest;
+    }
+
+    /**
+     * set the tower using string
+     * */
+    public void setTower(String towerString) {
+        Tower newTower = new Tower();
+        for (int i = towerString.length()-1; i>=0; i--) {
+            newTower = newTower.add(towerString.charAt(i));
+        }
+
+        this.top = newTower.top;
+        this.rest = newTower.rest ;
     }
 }
