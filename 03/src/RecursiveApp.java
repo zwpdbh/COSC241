@@ -6,8 +6,11 @@
 
 public class RecursiveApp {
     public static void main(String[] args) {
-        System.out.println(digit(123456));
-        System.out.println(sumOfDigit(123));
+        System.out.println(digit(1234567));
+        System.out.println(sumOfDigit(523));
+
+        System.out.println(digit(-1234567));
+        System.out.println(sumOfDigit(-523));
     }
 
     /**
@@ -15,6 +18,10 @@ public class RecursiveApp {
      * @return long
      */
     public static long digit(long n) {
+        if (n < 0) {
+            return digit(-1 * n);
+        }
+
         if (n < 10) {
             return 1;
         } else {
@@ -27,12 +34,14 @@ public class RecursiveApp {
      * @return long
      */
     public static long sumOfDigit(long n) {
-        int sum = 0;
-
-        if (n<10) {
-            return n;
+        if (n < 0) {
+            return sumOfDigit(-1 * n) * (-1);
         }
 
-        return sum;
+        if (n < 10) {
+            return n;
+        } else {
+            return n%10 + sumOfDigit(n/10);
+        }
     }
 }
