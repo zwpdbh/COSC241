@@ -1,4 +1,4 @@
-//package week03;
+package week03;
 
 /**
  *  A recursive representation of a tower of blocks.
@@ -55,7 +55,7 @@ public class Tower{
         return new Tower(block, this);
     }
     
-    /**
+    /**public method to return the height of tower.
      * @param 
      * @return int , represent the height of the tower
      */
@@ -70,8 +70,8 @@ public class Tower{
         return sum;
     }
     
-    /**
-     * @param 
+    /**Public method, count the number of specific blocks in the tower.
+     * @param c , the char represent the block. 
      * @return int , represent the number of specific blocks in the tower
      */
     public int count(char c) {
@@ -85,7 +85,9 @@ public class Tower{
         }
         return sum;
     }
-    
+    /**My self added method for debug.
+     * @return a string to represent the tower.
+     * */
     public String toString() {
         String str = "";
         Tower currentNode = this;
@@ -97,8 +99,8 @@ public class Tower{
         return str;
     }
     
-    /**
-     *@param k
+    /**Method to take the some nodes, and get rid of the rest.
+     *@param k , the number of nodes want to take.
      *keep the first to k th Node, get rid of the rest.
      */
     public void take(int k) {
@@ -111,7 +113,7 @@ public class Tower{
         currentNode.rest = null;
     }
 
-    /** removes the top k blocks
+    /** removes the top k blocks.
      * @param k remove(int k)that removes the top k blocks
      */
     public void remove(int k) {
@@ -121,13 +123,15 @@ public class Tower{
             currentNode = currentNode.rest;
             i++;
         }
-        
+
         this.top = currentNode.top;
         this.rest = currentNode.rest;
     }
 
     /**
-     * set the tower using string
+     * set the tower using string.
+     * @param towerString , my setter method to set the block of tower using a
+     * string
      * */
     public void setTower(String towerString) {
         Tower newTower = new Tower();
