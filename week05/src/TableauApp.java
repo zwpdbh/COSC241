@@ -3,6 +3,8 @@
  */
 package week05;
 
+import org.omg.CORBA.DynAnyPackage.Invalid;
+
 /**
  * Skeleton code for an array based implementation of Young's tableau.
  *
@@ -20,11 +22,10 @@ public class TableauApp {
         System.out.println(TableauApp.toString(valid));
 
         // Test for get number of rows in a specific columns.
-        getNumberOfRow(valid, 1);
-        getNumberOfRow(valid, 0);
-
+        //getNumberOfRow(valid, 1);
         // Test for method: rowLengthsDecrease
-        int [][] invalid = {{1, 2, 3}, {1, 2, 3, 4}, {3, 9, 12}, {7}};
+        int [][] invalid = {{1, 2, 3}, {7}, {1, 2, 3, 4},{3, 9, 12},};
+        //getNumberOfRow(invalid, 3);
         System.out.println(rowLengthsDecrease(invalid));
     }
 
@@ -71,6 +72,8 @@ public class TableauApp {
             int currentNumberOfRow = getNumberOfRow(t, i);
             if (currentNumberOfRow>previousNumberOfRow) {
                 return false;
+            } else {
+                previousNumberOfRow = currentNumberOfRow;
             }
         }
 
