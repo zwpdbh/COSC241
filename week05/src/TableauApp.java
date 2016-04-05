@@ -22,10 +22,13 @@ public class TableauApp {
 
         // int[][] valid = {{1, 4, 5, 10, 11}, {2, 6, 8}, {3, 9, 12}, {7}};
         // System.out.println(TableauApp.toString(valid));
+        // System.out.println();
+        // System.out.println(TableauApp.toString(transpose(valid)));
 
-        int[][] invalid ={{1, 4, 5, 10, 11}, {2, 6, 8}, {3, 9, 12}, {7}};
-        System.out.println(TableauApp.toString(invalid));
-        System.out.println(rowValuesIncrease(invalid));
+//        int[][] invalid ={{1, 4, 5, 10, 11}, {2, 6, 8}, {3, 9, 12}, {7}};
+//        System.out.println(TableauApp.toString(invalid));
+//        System.out.println(rowValuesIncrease(invalid));
+
     }
 
     /**
@@ -70,39 +73,20 @@ public class TableauApp {
      * @return returns true if no row is longer than a preceding row.
      */
     public static boolean rowLengthsDecrease(int[][] t) {
-        int previousNumberOfRow = getNumberOfRow(t, 0);
-        for (int i = 1; i < t.length; i++) {
-            int currentNumberOfRow = getNumberOfRow(t, i);
-            if (currentNumberOfRow > previousNumberOfRow) {
-                return false;
-            } else {
-                previousNumberOfRow = currentNumberOfRow;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * A helper function which return the number of rows in a specific columns.
-     *
-     * @param t        a two-dimensional array.
-     * @param indexCol the specific column.
-     * @return int which is the number of rows in the specific column.
-     */
-    private static int getNumberOfRow(int[][] t, int indexCol) {
-        int maxExpectedRows = t.length;
-        int i;
-        for (i = 1; i < maxExpectedRows; i++) {
+        for (int i=1; i<t.length; i++) {
             try {
-                int dummy = t[indexCol][i];
-            } catch (ArrayIndexOutOfBoundsException ex) {
+                int currentRowLength = t[i].length;
+                int nextRowLength = t[i+1].length;
+                if (currentRowLength<nextRowLength) {
+                    return false;
+                }
+            } catch(ArrayIndexOutOfBoundsException ex) {
                 break;
             }
         }
-        return i;
+        return true;
     }
-
+    
 
     /**
      * A method that returns true if the integers are increasing.
@@ -111,25 +95,25 @@ public class TableauApp {
      * @return returns true if integers are increasing.
      */
     public static boolean rowValuesIncrease(int[][] t) {
-        int numberOfColumn = t[0].length;
-        for (int col = 0; col < numberOfColumn; col++) {
-            for (int row = 0; row < getNumberOfRow(t, col) - 1; row++) {
+        for (int[] rows : t) {
+            for (int i = 0; i < rows.length - 1; i++) {
                 try {
-                    int current = t[col][row];
-                    int next = t[col][row+1];
-                    if (next <= current) {
-                        System.out.println("row: " + row + "  col: " + col);
-                        System.out.println("current: " + current + "\n" + "next: " + next);
+                    int current = rows[i];
+                    int next = rows[i + 1];
+                    if (next == 0) {
+                        break;
+                    }
+                    if (next < current) {
                         return false;
                     }
                 } catch (ArrayIndexOutOfBoundsException ex) {
-                    break;
+                    System.out.println(ex);
                 }
             }
         }
         return true;
-    }
 
+    }
 
     /**
      * A method that returns true if from top to bottom in any column,
@@ -140,20 +124,9 @@ public class TableauApp {
      * the integers are increasing, otherwise false.
      */
     public static boolean columnValuesIncrease(int[][] t) {
-        for (int[] rows : t) {
-            for (int i = 0; i < rows.length - 1; i++) {
-                try {
-                    int current = rows[i];
-                    int next = rows[i + 1];
-                    if (next < current) {
-                        return false;
-                    }
-                } catch (ArrayIndexOutOfBoundsException ex) {
-                    System.out.println(ex);
-                }
-            }
-        }
-        return true;
+        int[][] tTranspose = transpose(t);
+
+        return rowValuesIncrease(tTranspose);
     }
 
     /**
@@ -182,5 +155,27 @@ public class TableauApp {
         return true;
     }
 
+    /**
+    * Helper function return a t transpose.
+    * @param t a two-dimensional array.
+    * @return transpose which is t's transpose
+    */
+    private static int[][] transpose(int[][] t){
+        int numberOfRow = t.length;
+        int numberOfColumn= t[0].length;
+
+        int sizeOfRow = numberOfColumn;
+        int sizeOfColumn = numberOfRow;
+
+        int[][] transpose = new int[sizeOfRow][sizeOfColumn];
+
+        for (int i=0; i<t.length; i++) {
+            for (int j=0;j<t[i].length; j++) {
+                transpose[j][i] = t[i][j];
+            }
+        }
+
+        return transpose;
+    }
 }
 
