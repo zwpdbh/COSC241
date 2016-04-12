@@ -60,14 +60,19 @@ public class Tower{
      * @return int , represent the height of the tower
      */
     public int height() {
-        int sum = 0;
-        Tower currentNode = this;
-        while (currentNode.rest != null) {
-            sum++;
-            currentNode = currentNode.rest;
-        }
+        // int sum = 0;
+        // Tower currentNode = this;
+        // while (currentNode.rest != null) {
+        //     sum++;
+        //     currentNode = currentNode.rest;
+        // }
         
-        return sum;
+        // return sum;
+        if (this.isEmpty()) {
+        	return 0;
+        } else {
+        	return 1 + this.rest.height();
+        }
     }
     
     /**Public method, count the number of specific blocks in the tower.
@@ -75,15 +80,22 @@ public class Tower{
      * @return int , represent the number of specific blocks in the tower
      */
     public int count(char c) {
-        int sum = 0;
-        Tower currentNode = this;
-        while (currentNode.rest != null) {
-            if (currentNode.top == c) {
-                sum ++;
-            }
-            currentNode = currentNode.rest;
+        // int sum = 0;
+        // Tower currentNode = this;
+        // while (currentNode.rest != null) {
+        //     if (currentNode.top == c) {
+        //         sum ++;
+        //     }
+        //     currentNode = currentNode.rest;
+        // }
+        // return sum;
+        if (this.isEmpty()) {
+        	return 0;
+        } else if (this.rest!=null && this.top==c) {
+        	return 1+this.rest.count(c);
+        } else {
+        	return 0 + this.rest.count(c);
         }
-        return sum;
     }
     /**My self added method for debug.
      * @return a string to represent the tower.
