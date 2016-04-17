@@ -198,6 +198,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../coursefiles160/Calculator/Calculator.iml" filepath="$PROJECT_DIR$/../coursefiles160/Calculator/Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assignment_1/assignment_1.iml" filepath="$PROJECT_DIR$/assignment_1/assignment_1.iml" />
       <module fileurl="file://$PROJECT_DIR$/week02/week02.iml" filepath="$PROJECT_DIR$/week02/week02.iml" />
       <module fileurl="file://$PROJECT_DIR$/week03/week03.iml" filepath="$PROJECT_DIR$/week03/week03.iml" />
       <module fileurl="file://$PROJECT_DIR$/week05/week05.iml" filepath="$PROJECT_DIR$/week05/week05.iml" />
