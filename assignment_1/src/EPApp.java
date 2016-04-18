@@ -7,42 +7,50 @@ public class EPApp {
     public static void main(String[] args) {
 
 
-        String test1 = "8762105934";
-        String test2 = "1869032754";
+//        String test1 = "8762105934";
+//        String test2 = "1869032754";
+//
+//        EP ep1 = new EP();
+//        ep1.load(testList(test1));
+//        System.out.println(ep1.cirPile);
+//        System.out.println(ep1.sortingSteps());
+//        String expectedResult1 = "DDDDDMDDDDDDDDMDDDDDDDMDDMMDDDMDDDMDDMDMM";
+//        if (ep1.sortingSteps().equals(expectedResult1)) {
+//            System.out.println(true);
+//        }
 //
 //
-        EP ep1 = new EP();
-        ep1.load(testList(test1));
-        System.out.println(ep1.cirPile);
-        System.out.println(ep1.sortingSteps());
-        String expectedResult1 = "DDDDDMDDDDDDDDMDDDDDDDMDDMMDDDMDDDMDDMDMM";
-        if (ep1.sortingSteps().equals(expectedResult1)) {
-            System.out.println(true);
-        }
-
-
-        EP ep2 = new EP();
-        ep2.load(testList(test2));
-        System.out.println(ep2.sortingSteps());
-        String expectedResult2 = "DDDDMDDDDDMDDDDMDDDDDDMDDMDDDDMDMDMMM";
-        if (ep2.sortingSteps().equals(expectedResult2)) {
-            System.out.println(true);
-        }
+//        EP ep2 = new EP();
+//        ep2.load(testList(test2));
+//        System.out.println(ep2.sortingSteps());
+//        String expectedResult2 = "DDDDMDDDDDMDDDDMDDDDDDMDDMDDDDMDMDMMM";
+//        if (ep2.sortingSteps().equals(expectedResult2)) {
+//            System.out.println(true);
+//        }
+//
+//        EP ep = new EP();
+//        ep.setDEPTH(3);
+//        ep.load(testList(test2));
+//        System.out.println(ep.sortingSteps());
+//        if (ep.sortingSteps().equals("DMDDMDMMMMMMMM")) {
+//            System.out.println(true);
+//        }
+//
+//        ep.load(testList(test1));
+//        System.out.println(ep.cirPile);
+//        System.out.println(ep.sortingSteps());
+//        if (ep.sortingSteps().equals("DMMMMMMDMMMM")) {
+//            System.out.println(true);
+//        }
 
         EP ep = new EP();
-        ep.setDEPTH(3);
-        ep.load(testList(test2));
-        System.out.println(ep.sortingSteps());
-        if (ep.sortingSteps().equals("DMDDMDMMMMMMMM")) {
-            System.out.println(true);
-        }
-
-        ep.load(testList(test1));
+        ep.load(testList("3102"));
         System.out.println(ep.cirPile);
         System.out.println(ep.sortingSteps());
-        if (ep.sortingSteps().equals("DMMMMMMDMMMM")) {
-            System.out.println(true);
-        }
+
+        System.out.println(ep.cirPile);
+        System.out.println(ep.cirPile.currentOne());
+        System.out.println(ep.cirPile.lastOne());
     }
 
     public static ArrayList<Integer> testList(String str) {
