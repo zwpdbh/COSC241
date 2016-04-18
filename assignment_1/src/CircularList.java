@@ -30,14 +30,15 @@ public class CircularList<T> {
     }
 
     public boolean delete(T element, int range) {
-        if (this.count<=0) {
+        if (this.count<1) {
+            head = tail;
+            count = 0;
             return false;
         }
 
         LinkedNode current = this.head;
         if (head.element == element) {
             head = head.next;
-            //
             tail.next = head;
             this.count--;
             return true;
@@ -69,10 +70,16 @@ public class CircularList<T> {
 
 
     public T currentOne() {
+        if (count==0) {
+            return null;
+        }
         return (T)head.element;
     }
 
     public T lastOne() {
+        if (count==0) {
+            return null;
+        }
         return (T)tail.element;
     }
 
@@ -80,12 +87,14 @@ public class CircularList<T> {
         String str = "";
         LinkedNode current = head;
         int nodeNum = count;
-        while (nodeNum > 0) {
+        while (nodeNum >0) {
             str += (current.element + "_");
+            System.out.println(current.element);
             current = current.next;
             nodeNum--;
         }
-        return "total number of nodes are: " + count + "\n:" + str;
+        return "total number of nodes are: " + count + "\n:" + str + "\n" + "head: " + currentOne()
+                + "\n" + "tail: " + lastOne();
     }
 
     public int count() {
