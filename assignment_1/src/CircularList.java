@@ -15,18 +15,17 @@ public class CircularList<T> {
 
     public void add(T element) {
         LinkedNode node = new LinkedNode(element);
-        try {
-            tail.next = node;
-            node.next = head;
-            tail = node;
-        } catch (NullPointerException e) {
-            // if the added node is the first node, need to treat it specially.
+        if (this.count == 0) {
             head = node;
             head.next = tail;
             tail = head;
-        } finally {
-            count++;
+        } else  {
+            tail.next = node;
+            node.next = head;
+            tail = node;
         }
+
+        count++;
     }
 
     public boolean delete(T element, int range) {
@@ -89,7 +88,7 @@ public class CircularList<T> {
         int nodeNum = count;
         while (nodeNum >0) {
             str += (current.element + "_");
-            System.out.println(current.element);
+            //System.out.println(current.element);
             current = current.next;
             nodeNum--;
         }

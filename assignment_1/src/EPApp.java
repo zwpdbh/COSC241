@@ -37,6 +37,7 @@ public class EPApp {
 //            System.out.println(true);
 //        }
 
+//        System.out.println(ep.cirPile);
 //        ep.load(testList(test1));
 //        System.out.println(ep.cirPile);
 //        System.out.println(ep.sortingSteps());
@@ -44,39 +45,39 @@ public class EPApp {
 //            System.out.println(true);
 //        }
 
-        EP ep = new EP();
-
+//        EP ep = new EP();
+//
 //        ep.load(testList("3102"));
 //        System.out.println(ep.cirPile);
 //        System.out.println(ep.sortingSteps());
 //
 //        System.out.println(ep.cirPile);
-
-
-        ep.cirPile.add(1);
-        System.out.println(ep.cirPile);
-
-        ep.cirPile.add(0);
-        System.out.println(ep.cirPile);
-
-
-        ep.cirPile.delete(1, 1);
-        System.out.println(ep.cirPile);
-
-        ep.cirPile.add(1);
-        System.out.println(ep.cirPile);
-
-        ep.cirPile.moveHeadForward(1);
-        System.out.println(ep.cirPile);
-
-        ep.cirPile.delete(1,1);
-        System.out.println(ep.cirPile);
-
-        ep.cirPile.delete(0,1);
-        System.out.println(ep.cirPile);
-
-        ep.cirPile.add(1);
-        System.out.println(ep.cirPile);
+//
+//
+//        ep.cirPile.add(1);
+//        System.out.println(ep.cirPile);
+//
+//        ep.cirPile.add(0);
+//        System.out.println(ep.cirPile);
+//
+//
+//        ep.cirPile.delete(1, 1);
+//        System.out.println(ep.cirPile);
+//
+//        ep.cirPile.add(1);
+//        System.out.println(ep.cirPile);
+//
+//        ep.cirPile.moveHeadForward(1);
+//        System.out.println(ep.cirPile);
+//
+//        ep.cirPile.delete(1,1);
+//        System.out.println(ep.cirPile);
+//
+//        ep.cirPile.delete(0,1);
+//        System.out.println(ep.cirPile);
+//
+//        ep.cirPile.add(1);
+//        System.out.println(ep.cirPile);
     }
 
     public static ArrayList<Integer> testList(String str) {

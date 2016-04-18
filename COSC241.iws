@@ -25,10 +25,10 @@
       <file leaf-file-name="CircularList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assignment_1/src/CircularList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-241">
-              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+            <state relative-caret-position="1530">
+              <caret line="90" column="50" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
               <folding>
-                <marker date="1460975935000" expanded="false" signature="2393:2404" placeholder=" { " />
+                <marker date="1460976413000" expanded="false" signature="2284:2295" placeholder=" { " />
               </folding>
             </state>
           </provider>
@@ -37,10 +37,10 @@
       <file leaf-file-name="EPApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assignment_1/src/EPApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="78" selection-end-column="39" />
+            <state relative-caret-position="153">
+              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="31" selection-end-column="25" />
               <folding>
-                <element signature="e#2258#2267#0" expanded="true" />
+                <element signature="e#2356#2365#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,8 +77,8 @@
         <option value="$PROJECT_DIR$/assignment_1/src/CircularNode.java" />
         <option value="$PROJECT_DIR$/assignment_1/src/LinkedNode.java" />
         <option value="$PROJECT_DIR$/assignment_1/src/EP.java" />
-        <option value="$PROJECT_DIR$/assignment_1/src/EPApp.java" />
         <option value="$PROJECT_DIR$/assignment_1/src/CircularList.java" />
+        <option value="$PROJECT_DIR$/assignment_1/src/EPApp.java" />
       </list>
     </option>
   </component>
@@ -668,7 +668,7 @@
         <state relative-caret-position="405">
           <caret line="52" column="47" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="47" />
           <folding>
-            <element signature="e#2258#2267#0" expanded="true" />
+            <element signature="e#2356#2365#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -678,7 +678,7 @@
         <state relative-caret-position="-187">
           <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
           <folding>
-            <marker date="1460975935000" expanded="false" signature="2393:2404" placeholder=" { " />
+            <marker date="1460976413000" expanded="false" signature="2284:2295" placeholder=" { " />
           </folding>
         </state>
       </provider>
@@ -711,7 +711,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2258#2267#0" expanded="true" />
+            <element signature="e#2356#2365#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -908,33 +908,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding>
-            <element signature="e#619#620#0" expanded="true" />
-            <element signature="e#672#673#0" expanded="true" />
-            <element signature="e#1070#1071#0" expanded="true" />
-            <element signature="e#1116#1117#0" expanded="true" />
-            <element signature="e#1504#1505#0" expanded="true" />
-            <element signature="e#1538#1539#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assignment_1/src/CircularList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-241">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        <state relative-caret-position="1530">
+          <caret line="90" column="50" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
           <folding>
-            <marker date="1460975935000" expanded="false" signature="2393:2404" placeholder=" { " />
+            <marker date="1460976413000" expanded="false" signature="2284:2295" placeholder=" { " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assignment_1/src/EPApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="78" selection-end-column="39" />
+        <state relative-caret-position="153">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="31" selection-end-column="25" />
           <folding>
-            <element signature="e#2258#2267#0" expanded="true" />
+            <element signature="e#2356#2365#0" expanded="true" />
           </folding>
         </state>
       </provider>
