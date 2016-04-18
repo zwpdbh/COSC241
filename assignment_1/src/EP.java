@@ -7,6 +7,8 @@ public class EP implements ExamPile {
     private CircularList<Integer> cirPile = new CircularList();
     private int max;
     private int min;
+    private int DEPTH = 1;
+    private String steps = "";
 
     @Override
     public void load(List<Integer> items) {
@@ -31,8 +33,11 @@ public class EP implements ExamPile {
     @Override
     public int mark(int depth, int value) {
         if (cirPile.delete(value, depth)) {
+            steps += "M";
             return value;
         } else {
+            cirPile.moveHeadForward(depth);
+            steps += "D";
             return -1;
         }
     }
@@ -43,6 +48,16 @@ public class EP implements ExamPile {
     }
 
     public String sortingSteps() {
-        return "";
+        System.out.println(this.cirPile + "\n");
+        this.mark(1, 0);
+        System.out.println(this.cirPile);
+
+        this.mark(1, 0);
+        System.out.println(this.cirPile);
+
+        this.mark(1, 1);
+        System.out.println(this.cirPile);
+
+        return steps;
     }
 }

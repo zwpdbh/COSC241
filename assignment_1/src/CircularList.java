@@ -7,6 +7,7 @@ public class CircularList<T> {
     private int count;
 
 
+
     public CircularList() {
         head = tail;
         count = 0;
@@ -30,20 +31,21 @@ public class CircularList<T> {
 
     public boolean delete(T element, int range) {
         LinkedNode current = this.head;
-        if (head.element == element) {
-            System.out.println("In the head");
-            this.moveHeadForward(1);
-            tail.next = head;
-            this.count--;
-            return true;
-        }
-        for (int i=0; i<range; i++) {
-            if (current.next.element == element) {
-                current.next = current.next.next;
+        if (range==1) {
+            if (head.element == element) {
+                head = head.next;
                 this.count--;
                 return true;
             }
-            current = current.next;
+        } else {
+            for (int i=0; i<range-1; i++) {
+                if (current.next.element == element) {
+                    current.next = current.next.next;
+                    this.count--;
+                    return true;
+                }
+                current = current.next;
+            }
         }
 
         return false;
@@ -54,6 +56,7 @@ public class CircularList<T> {
         for (int i=0; i<num; i++) {
             try {
                 head = head.next;
+                tail = tail.next;
             } catch (NullPointerException e) {
                 System.out.println(e);
             }
@@ -65,6 +68,9 @@ public class CircularList<T> {
         return (T)head.element;
     }
 
+    public T lastOne() {
+        return (T)tail.element;
+    }
 
     public String toString() {
         String str = "";
@@ -77,4 +83,10 @@ public class CircularList<T> {
         }
         return "total number of nodes are: " + count + "\n:" + str;
     }
+
+    public int count() {
+        return this.count;
+    }
+
+
 }
