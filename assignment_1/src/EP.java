@@ -23,6 +23,7 @@ public class EP implements ExamPile {
                 min = each;
             }
         }
+        steps = "";
     }
 
     @Override
