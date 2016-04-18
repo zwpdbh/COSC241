@@ -30,13 +30,17 @@ public class CircularList<T> {
     }
 
     public boolean delete(T element, int range) {
+        if (this.count<=0) {
+            return false;
+        }
+
         LinkedNode current = this.head;
-        if (range==1) {
-            if (head.element == element) {
-                head = head.next;
-                this.count--;
-                return true;
-            }
+        if (head.element == element) {
+            head = head.next;
+            //
+            tail.next = head;
+            this.count--;
+            return true;
         } else {
             for (int i=0; i<range-1; i++) {
                 if (current.next.element == element) {

@@ -7,85 +7,51 @@ public class EPApp {
     public static void main(String[] args) {
 
 
+        String test1 = "8762105934";
+        String test2 = "1869032754";
 //
-//        ArrayList<Integer> test = new ArrayList<Integer>();
-//        test.add(1);
-//        test.add(0);
-//        test.add(2);
 //
-//        EP ep = new EP();
-//        ep.load(test);
-//        System.out.println(ep.sortingSteps());
-
-        CircularList<Integer> cir = new CircularList<Integer>();
-
-        String test = "102";
-        for (int i = 0; i<test.length(); i++) {
-            cir.add(Integer.parseInt("" + test.charAt(i)));
+        EP ep1 = new EP();
+        ep1.load(testList(test1));
+        System.out.println(ep1.cirPile);
+        System.out.println(ep1.sortingSteps());
+        String expectedResult1 = "DDDDDMDDDDDDDDMDDDDDDDMDDMMDDDMDDDMDDMDMM";
+        if (ep1.sortingSteps().equals(expectedResult1)) {
+            System.out.println(true);
         }
 
-        System.out.println(cir);
-        cir.delete(0, 1);
 
-        System.out.println(cir);
+        EP ep2 = new EP();
+        ep2.load(testList(test2));
+        System.out.println(ep2.sortingSteps());
+        String expectedResult2 = "DDDDMDDDDDMDDDDMDDDDDDMDDMDDDDMDMDMMM";
+        if (ep2.sortingSteps().equals(expectedResult2)) {
+            System.out.println(true);
+        }
 
-        cir.moveHeadForward(1);
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
+        EP ep = new EP();
+        ep.setDEPTH(3);
+        ep.load(testList(test2));
+        System.out.println(ep.sortingSteps());
+        if (ep.sortingSteps().equals("DMDDMDMMMMMMMM")) {
+            System.out.println(true);
+        }
 
-        System.out.println("Before delete");
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-        cir.delete(0, 1);
-        System.out.println("After delete");
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-
-        cir.delete(1, 1);
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-
-//        cir.moveHeadForward(1);
-//        System.out.println(cir);
-//        System.out.println(cir.currentOne());
-//        System.out.println(cir.lastOne());
-
-        cir.add(4);
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-
-        cir.moveHeadForward(1);
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-
-        cir.add(3);
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-
-        cir.delete(2, 1);
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-
-        cir.moveHeadForward(1);
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-
-        cir.delete(4, 1);
-        System.out.println(cir);
-        System.out.println(cir.currentOne());
-        System.out.println(cir.lastOne());
-
-
+        ep.load(testList(test1));
+        System.out.println(ep.cirPile);
+        System.out.println(ep.sortingSteps());
+        if (ep.sortingSteps().equals("DMMMMMMDMMMM")) {
+            System.out.println(true);
+        }
     }
 
+    public static ArrayList<Integer> testList(String str) {
+        ArrayList<Integer> test = new ArrayList<Integer>();
+        for (int i = 0; i<str.length(); i++) {
+            test.add(Integer.parseInt("" + str.charAt(i)));
+        }
+
+        return test;
+    }
 
 }

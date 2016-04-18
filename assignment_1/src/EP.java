@@ -4,11 +4,11 @@ import java.util.List;
  * Created by zw on 4/17/16.
  */
 public class EP implements ExamPile {
-    private CircularList<Integer> cirPile = new CircularList();
+    public CircularList<Integer> cirPile = new CircularList();
     private int max;
     private int min;
-    private int DEPTH = 1;
-    private String steps = "";
+    private int depth = 1;
+    public String steps = "";
 
     @Override
     public void load(List<Integer> items) {
@@ -32,6 +32,9 @@ public class EP implements ExamPile {
 
     @Override
     public int mark(int depth, int value) {
+        if (cirPile.count()==0) {
+            return -2;
+        }
         if (cirPile.delete(value, depth)) {
             steps += "M";
             return value;
@@ -48,16 +51,21 @@ public class EP implements ExamPile {
     }
 
     public String sortingSteps() {
-        System.out.println(this.cirPile + "\n");
-        this.mark(1, 0);
-        System.out.println(this.cirPile);
-
-        this.mark(1, 0);
-        System.out.println(this.cirPile);
-
-        this.mark(1, 1);
-        System.out.println(this.cirPile);
-
+        int mark = min;
+        while (mark<=max) {
+            int result = mark(depth, mark);
+            if (result == -2) {
+                break;
+            } else if (result == -1) {
+                continue;
+            } else {
+                mark++;
+            }
+        }
         return steps;
+    }
+
+    public void setDEPTH(int depth) {
+        this.depth = depth;
     }
 }
