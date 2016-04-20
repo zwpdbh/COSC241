@@ -1,14 +1,28 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by zw on 4/17/16.
  */
 public class EP implements ExamPile {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        String inputStr = input.nextLine();
+        System.out.println("Your input is: " + inputStr);
+        EP ep = new EP();
+        ep.load(testList(inputStr));
+        System.out.println(ep.sortingSteps());
+    }
+
     public CircularList<Integer> cirPile = new CircularList();
+
     private int max;
     private int min;
     private int depth = 1;
     public String steps = "";
+
 
     @Override
     public void load(List<Integer> items) {
@@ -68,5 +82,14 @@ public class EP implements ExamPile {
 
     public void setDEPTH(int depth) {
         this.depth = depth;
+    }
+
+    public static ArrayList<Integer> testList(String str) {
+        ArrayList<Integer> test = new ArrayList<Integer>();
+        String[] arrOfNum = str.split(" ");
+        for (String each: arrOfNum) {
+            test.add(Integer.parseInt(each));
+        }
+        return test;
     }
 }
