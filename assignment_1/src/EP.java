@@ -1,3 +1,4 @@
+//package week09;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -6,24 +7,15 @@ import java.util.Scanner;
  * Created by zw on 4/17/16.
  */
 public class EP implements ExamPile {
-
-    public CircularList<Integer> cirPile = new CircularList();
-
-    private int max;
-    private int min;
-    private int depth = 1;
-    public String steps = "";
-
-
     public static void main(String[] args) {
-        int firstArg = 0;
+        int firstArg = 1;
 
-        if (args.length == 1) {
+        if (args.length > 0) {
             try {
                 firstArg = Integer.parseInt(args[0]);
             } catch (NumberFormatException e) {
                 System.err.println("Argument" + args[0] + " must be an integer.");
-                firstArg = 0;
+                firstArg = 1;
             }
         }
 
@@ -34,11 +26,18 @@ public class EP implements ExamPile {
                 return;
             }
             EP ep = new EP();
-            // ep.depth = firstArg;
+            ep.setDEPTH(firstArg);
             ep.load(testList(inputStr));
             System.out.println(ep.sortingSteps());
         }
     }
+
+    public CircularList<Integer> cirPile = new CircularList();
+
+    private int max;
+    private int min;
+    public int depth = 1;
+    public String steps = "";
 
 
     @Override
@@ -95,6 +94,10 @@ public class EP implements ExamPile {
             }
         }
         return steps;
+    }
+
+    public void setDEPTH(int depth) {
+        this.depth = depth;
     }
 
     public static ArrayList<Integer> testList(String str) {
