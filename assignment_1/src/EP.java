@@ -6,15 +6,6 @@ import java.util.Scanner;
  * Created by zw on 4/17/16.
  */
 public class EP implements ExamPile {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        String inputStr = input.nextLine();
-        System.out.println("Your input is: " + inputStr);
-        EP ep = new EP();
-        ep.load(testList(inputStr));
-        System.out.println(ep.sortingSteps());
-    }
 
     public CircularList<Integer> cirPile = new CircularList();
 
@@ -22,6 +13,32 @@ public class EP implements ExamPile {
     private int min;
     private int depth = 1;
     public String steps = "";
+
+
+    public static void main(String[] args) {
+        int firstArg = 0;
+
+        if (args.length == 1) {
+            try {
+                firstArg = Integer.parseInt(args[0]);
+            } catch (NumberFormatException e) {
+                System.err.println("Argument" + args[0] + " must be an integer.");
+                firstArg = 0;
+            }
+        }
+
+        Scanner input = new Scanner(System.in);
+        while (input.hasNextLine()) {
+            String inputStr = input.nextLine();
+            if (inputStr.contentEquals("")) {
+                return;
+            }
+            EP ep = new EP();
+            // ep.depth = firstArg;
+            ep.load(testList(inputStr));
+            System.out.println(ep.sortingSteps());
+        }
+    }
 
 
     @Override
@@ -78,10 +95,6 @@ public class EP implements ExamPile {
             }
         }
         return steps;
-    }
-
-    public void setDEPTH(int depth) {
-        this.depth = depth;
     }
 
     public static ArrayList<Integer> testList(String str) {
