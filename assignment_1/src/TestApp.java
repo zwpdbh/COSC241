@@ -1,4 +1,10 @@
+import java.io.*;
 import java.lang.reflect.Array;
+import java.lang.reflect.WildcardType;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 
 /**
@@ -8,13 +14,34 @@ public class TestApp {
     public static void main(String[] args) {
 //        int[][] testData = generateExamPapers(10, 10);
 //        display(testData);
-        neededSteps(1, 100, 100);
+
+        String fileName = "/Users/zw/code/COSC241/assignment_1/test_Result_For_EP.txt";
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
+            writer.write("The relationship between depth and the steps on certain number of papers. \n");
+            for (int depth = 1; depth<=20; depth++) {
+                String steps = neededSteps(depth, 100, 100) + "";
+                writer.write(steps + "\n");
+            }
+
+            writer.write("\nThe relationship between the average number of steps required and the size of the pile, when depth = 5 \n");
+            for (int sizeOfThePile = 10; sizeOfThePile<=100; sizeOfThePile+=2) {
+                String steps = neededSteps(5, 100, sizeOfThePile) + "";
+                writer.write(steps + "\n");
+            }
+        } catch (Exception e) {
+            return ;
+        }
+
+
+
+//        neededSteps(1, 100, 100);
     }
 
     public static int neededSteps(int depth, int numberOfPiles, int numberOfPapersInEachPile) {
-        System.out.println("Depth:  " + depth +
-                "  Piles:  " + numberOfPiles +
-                "  Papers in each Pile:  " + numberOfPapersInEachPile);
+//        System.out.println("Depth:  " + depth +
+//                "  Piles:  " + numberOfPiles +
+//                "  Papers in each Pile:  " + numberOfPapersInEachPile);
+
         int[][] testData = generateExamPapers(numberOfPiles, numberOfPapersInEachPile);
         int[] stepsForEachPile = new int[numberOfPiles];
 
@@ -28,11 +55,14 @@ public class TestApp {
 
         int totalSteps = 0;
         for (int i=0; i<stepsForEachPile.length; i++) {
-            System.out.println("steps for pile " + i  + " = "+ stepsForEachPile[i]);
+//            System.out.println("steps for pile " + i  + " = "+ stepsForEachPile[i]);
             totalSteps += stepsForEachPile[i];
         }
         int averageSteps = totalSteps/numberOfPiles;
-        System.out.println(totalSteps + "/" + numberOfPiles + " = " + averageSteps);
+//        System.out.println("Depth = " + depth + ",  papers in each Pile = " +
+//                numberOfPapersInEachPile + ", sampling from " +
+//                numberOfPiles + " piles");
+        System.out.println("Average of Steps: " + totalSteps + "/" + numberOfPiles + " = " + averageSteps);
         return averageSteps;
     }
 
