@@ -56,6 +56,20 @@ public class EP implements ExamPile {
         steps = "";
     }
 
+    public void loadWithArray(int[] data) {
+        max = min = data[0];
+        for (int each: data) {
+            cirPile.add(each);
+            if (each > max) {
+                max = each;
+            }
+            if (each < min) {
+                min = each;
+            }
+        }
+        steps = "";
+    }
+
     @Override
     public int peek() {
         return (Integer) cirPile.currentOne();
