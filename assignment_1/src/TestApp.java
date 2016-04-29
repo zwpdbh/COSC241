@@ -23,9 +23,9 @@ public class TestApp {
                 writer.write(steps + "\n");
             }
 
-            writer.write("\nThe relationship between the average number of steps required and the size of the pile, when depth = 5 \n");
-            for (int sizeOfThePile = 10; sizeOfThePile<=100; sizeOfThePile+=2) {
-                String steps = neededSteps(5, 100, sizeOfThePile) + "";
+            writer.write("\nThe relationship between the average number of steps required and the size of the pile, when depth = 1 \n");
+            for (int sizeOfThePile = 1; sizeOfThePile<=120; sizeOfThePile+=1) {
+                String steps = neededSteps(1, 100, sizeOfThePile) + "";
                 writer.write(steps + "\n");
             }
         } catch (Exception e) {
