@@ -2,8 +2,8 @@
  * Created by zw on 4/18/16.
  */
 public class CircularList<T> {
-    private LinkedNode head;
-    private LinkedNode tail;
+    private LinkedNode<T> head;
+    private LinkedNode<T> tail;
     private int count;
 
 
@@ -13,7 +13,7 @@ public class CircularList<T> {
     }
 
     public void add(T element) {
-        LinkedNode node = new LinkedNode(element);
+        LinkedNode<T> node = new LinkedNode<T>(element);
         if (this.count == 0) {
             head = node;
             head.next = tail;
@@ -34,7 +34,7 @@ public class CircularList<T> {
             return false;
         }
 
-        LinkedNode current = this.head;
+        LinkedNode<T> current = this.head;
         if (head.element == element) {
             head = head.next;
             tail.next = head;
@@ -71,19 +71,19 @@ public class CircularList<T> {
         if (count == 0) {
             return null;
         }
-        return (T) head.element;
+        return head.element;
     }
 
     public T lastOne() {
         if (count == 0) {
             return null;
         }
-        return (T) tail.element;
+        return tail.element;
     }
 
     public String toString() {
         String str = "";
-        LinkedNode current = head;
+        LinkedNode<T> current = head;
         int nodeNum = count;
         while (nodeNum > 0) {
             str += (current.element + "_");
@@ -101,7 +101,7 @@ public class CircularList<T> {
 
     private class LinkedNode<T> {
         T element;
-        LinkedNode next;
+        LinkedNode<T> next;
 
         LinkedNode(T element) {
             this.element = element;

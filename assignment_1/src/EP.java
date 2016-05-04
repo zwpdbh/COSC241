@@ -1,4 +1,3 @@
-//package week09;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,7 +32,7 @@ public class EP implements ExamPile {
         }
     }
 
-    public CircularList<Integer> cirPile = new CircularList();
+    public CircularList<Integer> cirPile = new CircularList<Integer>();
 
     private int max;
     private int min;
@@ -77,7 +76,7 @@ public class EP implements ExamPile {
         if (cirPile.currentOne() == null) {
             throw new EmptyPileException("empty");
         } else {
-            return (Integer) cirPile.currentOne();
+            return cirPile.currentOne();
         }
     }
 

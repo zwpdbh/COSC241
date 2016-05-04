@@ -5,5 +5,4 @@ public class EmptyPileException extends Exception{
     public EmptyPileException(String message) {
         super(message);
     }
-
 }
