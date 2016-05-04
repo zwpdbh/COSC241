@@ -5,7 +5,7 @@ import java.util.List;
  */
 public interface ExamPile {
     public void load(List<Integer> items);
-    public int peek();
-    public int mark(int depth, int value);
-    public void delay(int count);
+    public int peek() throws EmptyPileException;
+    public int mark(int depth, int value) throws EmptyPileException;
+    public void delay(int count) throws EmptyPileException;
 }

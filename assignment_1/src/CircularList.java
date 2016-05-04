@@ -99,5 +99,12 @@ public class CircularList<T> {
         return this.count;
     }
 
+    private class LinkedNode<T> {
+        T element;
+        LinkedNode next;
 
+        LinkedNode(T element) {
+            this.element = element;
+        }
+    }
 }

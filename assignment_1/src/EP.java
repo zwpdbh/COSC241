@@ -7,6 +7,7 @@ import java.util.Scanner;
  * Created by zw on 4/17/16.
  */
 public class EP implements ExamPile {
+
     public static void main(String[] args) {
         int firstArg = 1;
 
@@ -71,14 +72,19 @@ public class EP implements ExamPile {
     }
 
     @Override
-    public int peek()  {
-        return (Integer) cirPile.currentOne();
+    public int peek() throws EmptyPileException  {
+
+        if (cirPile.currentOne() == null) {
+            throw new EmptyPileException("empty");
+        } else {
+            return (Integer) cirPile.currentOne();
+        }
     }
 
     @Override
-    public int mark(int depth, int value) {
+    public int mark(int depth, int value) throws EmptyPileException{
         if (cirPile.count()==0) {
-            return -2;
+            throw new EmptyPileException("the pile is empty");
         }
         if (cirPile.delete(value, depth)) {
             steps += "M";
@@ -91,20 +97,38 @@ public class EP implements ExamPile {
     }
 
     @Override
-    public void delay(int count) {
+    public void delay(int count) throws EmptyPileException{
+        if (cirPile.count()==0) {
+            throw new EmptyPileException("pile is empty");
+        }
         cirPile.moveHeadForward(count);
     }
 
+    /**
+     * Constructs a string if 'M' and 'S' characters that represent
+     * steps taken to mark a pile of exams.
+     * <p>
+     * The method uses a loop iterate over the  exam pile by calling the
+     * method <code>mark()</code> and searching for a <code>currExam</code>.
+     * <p>
+     * If the value is found, an 'M' is added to the string, else a 'D' is
+     * added and the exam goes to the bottom of the pile by calling
+     * <code>delay()</code> method.
+     *
+     * @return the steps taken, represented by M's and D's to mark the pile.
+     */
     public String sortingSteps() {
         int mark = min;
         while (mark<=max) {
-            int result = mark(depth, mark);
-            if (result == -2) {
-                break;
-            } else if (result == -1) {
-                continue;
-            } else {
-                mark++;
+            try {
+                int result = mark(depth, mark);
+                if (result == -1) {
+                    continue;
+                } else {
+                    mark++;
+                }
+            } catch (EmptyPileException e) {
+                System.out.println(e);
             }
         }
         return steps;

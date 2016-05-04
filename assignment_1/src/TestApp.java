@@ -26,7 +26,24 @@ public class TestApp {
 //        } catch (Exception e) {
 //            return ;
 //        }
+//        EP ep = new EP();
+//        try {
+//            ep.peek();
+//        } catch (EmptyPileException e) {
+//            System.out.println(e);
+//        }
+        EP ep = new EP();
+       ep.setDEPTH(1);
+        ep.loadWithArray(new int[]{8,7,6,2,1,0,5,9,3,4});
+        System.out.println(ep.sortingSteps().equals("DDDDDMDDDDDDDDMDDDDDDDMDDMMDDDMDDDMDDMDMM"));
+        ep.loadWithArray(new int[]{1,8,6,9,0,3,2,7,5,4});
+        System.out.println(ep.sortingSteps().equals("DDDDMDDDDDMDDDDMDDDDDDMDDMDDDDMDMDMMM"));
 
+        ep.setDEPTH(3);
+        ep.loadWithArray(new int[]{8,7,6,2,1,0,5,9,3,4});
+        System.out.println(ep.sortingSteps().equals("DMMMMMMDMMMM"));
+        ep.loadWithArray(new int[]{1,8,6,9,0,3,2,7,5,4});
+        System.out.println(ep.sortingSteps().equals("DMDDMDMMMMMMMM"));
     }
 
     public static int neededSteps(int depth, int numberOfPiles, int numberOfPapersInEachPile) {
