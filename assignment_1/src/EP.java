@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 /**
  * Created by zw on 4/17/16.
+ * The EP class is implemented by CircularList which is a List its tail is
+ * pointed to its head.
  */
 public class EP implements ExamPile {
 
@@ -33,13 +35,20 @@ public class EP implements ExamPile {
     }
 
     public CircularList<Integer> cirPile = new CircularList<Integer>();
-
+    
+    /**
+     *The max is the max number in the pile
+     *The min is the min number in the pile
+     *So the difference is the the size of the cirPile
+     * */
     private int max;
     private int min;
     public int depth = 1;
     public String steps = "";
 
-
+    /**
+     * load a List of Integer to get ready to mark
+     * */
     @Override
     public void load(List<Integer> items) {
         max = min = items.get(0);
@@ -55,7 +64,11 @@ public class EP implements ExamPile {
         }
         steps = "";
     }
-
+    
+    
+    /**
+     * another method which can load a array of Integer to get to mark
+     * */
     public void loadWithArray(int[] data) {
         max = min = data[0];
         for (int each: data) {
@@ -69,17 +82,28 @@ public class EP implements ExamPile {
         }
         steps = "";
     }
+    
 
+    /**
+     * return the current element in the CircularList, which is the head of the
+     * CircularList.
+     * */
     @Override
     public int peek() throws EmptyPileException  {
 
         if (cirPile.currentOne() == null) {
-            throw new EmptyPileException("empty");
+            throw new EmptyPileException("the pile is empty");
         } else {
             return cirPile.currentOne();
         }
     }
-
+    
+    /**
+     * This method try to mark a certain paper within depth
+     * It returen the an int as shown the result of it.
+     * If succeed, return marked value, otherwise return -1, means failed and
+     * moved to the next several papers, controled by depth
+     * */
     @Override
     public int mark(int depth, int value) throws EmptyPileException{
         if (cirPile.count()==0) {
@@ -94,11 +118,15 @@ public class EP implements ExamPile {
             return -1;
         }
     }
-
+    
+    /**
+     * It makes the current pointer which is the head move to the next several
+     * nodes, controled by count.
+     * */
     @Override
     public void delay(int count) throws EmptyPileException{
         if (cirPile.count()==0) {
-            throw new EmptyPileException("pile is empty");
+            throw new EmptyPileException("the pile is empty");
         }
         cirPile.moveHeadForward(count);
     }
@@ -132,11 +160,17 @@ public class EP implements ExamPile {
         }
         return steps;
     }
-
+    
+    /**
+     * setter method for set the depth
+     * */
     public void setDEPTH(int depth) {
         this.depth = depth;
     }
-
+    
+    /**
+     * a method for testing result in main method
+     * */
     public static ArrayList<Integer> testList(String str) {
         ArrayList<Integer> test = new ArrayList<Integer>();
         String[] arrOfNum = str.split(" ");

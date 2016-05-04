@@ -2,6 +2,16 @@
  * Created by zw on 4/18/16.
  */
 public class CircularList<T> {
+    
+    /**the circular list(used as stack) has three attributes
+     * the head is the current node, for this assignment, you keep marking the
+     * current node, if need to delay, simply rotate the circle, which make
+     * head point to the next several node. That's also why we use circular
+     * list to implement this assignment
+     * tail, its purpose is to make the list to form a circle, it point to the
+     * head
+     * The count is a attribue to help to check the size of the list
+     * */
     private LinkedNode<T> head;
     private LinkedNode<T> tail;
     private int count;
@@ -54,7 +64,9 @@ public class CircularList<T> {
         return false;
     }
 
-
+    /**rotate the circle with number of num, by making the head point to the
+     * next num nodes
+     * */
     public void moveHeadForward(int num) {
         for (int i = 0; i < num; i++) {
             try {
@@ -66,7 +78,7 @@ public class CircularList<T> {
         }
     }
 
-
+    /**return the head's element*/
     public T currentOne() {
         if (count == 0) {
             return null;
@@ -80,7 +92,8 @@ public class CircularList<T> {
         }
         return tail.element;
     }
-
+    
+    /**toString method for troubleshooting*/
     public String toString() {
         String str = "";
         LinkedNode<T> current = head;
@@ -98,7 +111,9 @@ public class CircularList<T> {
     public int count() {
         return this.count;
     }
-
+    /**
+     * the node 
+     * */
     private class LinkedNode<T> {
         T element;
         LinkedNode<T> next;
