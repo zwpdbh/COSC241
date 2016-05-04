@@ -71,7 +71,7 @@ public class EP implements ExamPile {
     }
 
     @Override
-    public int peek() {
+    public int peek()  {
         return (Integer) cirPile.currentOne();
     }
 

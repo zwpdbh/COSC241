@@ -15,33 +15,18 @@ public class TestApp {
 //        int[][] testData = generateExamPapers(10, 10);
 //        display(testData);
 
-        String fileName = "/Users/zw/code/COSC241/assignment_1/test_Result_For_EP.txt";
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
-//            writer.write("The relationship between depth and the steps on certain number of papers. \n");
-//            for (int depth = 1; depth<=20; depth++) {
-//                String steps = neededSteps(depth, 100, 100) + "";
-//                writer.write(steps + "\n");
+//        String fileName = "/Users/zw/code/COSC241/assignment_1/test_Result_For_EP.txt";
+//        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
+//            writer.write("\nColumn for: depth, the size of pile, the sorting steps\n");
+//            for (int depth = 1; depth <= 20; depth++) {
+//                for (int sizeOfPile = 3; sizeOfPile <= 100; sizeOfPile++) {
+//                    writer.write(depth + "\t" + sizeOfPile + "\t" + neededSteps(depth, 50, sizeOfPile) + "\n");
+//                }
 //            }
-//
-//            writer.write("\nThe relationship between the average number of steps required and the size of the pile, when depth = 1 \n");
-//            for (int sizeOfThePile = 1; sizeOfThePile<=120; sizeOfThePile+=1) {
-//                String steps = neededSteps(1, 100, sizeOfThePile) + "";
-//                writer.write(steps + "\n");
-//            }
+//        } catch (Exception e) {
+//            return ;
+//        }
 
-            writer.write("\nColumn for: depth, the size of pile, the sorting steps\n");
-            for (int depth = 1; depth <= 20; depth++) {
-                for (int sizeOfPile = 3; sizeOfPile <= 100; sizeOfPile++) {
-                    writer.write(depth + "\t" + sizeOfPile + "\t" + neededSteps(depth, 50, sizeOfPile) + "\n");
-                }
-            }
-        } catch (Exception e) {
-            return ;
-        }
-
-
-
-//        neededSteps(1, 100, 100);
     }
 
     public static int neededSteps(int depth, int numberOfPiles, int numberOfPapersInEachPile) {

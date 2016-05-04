@@ -7,7 +7,6 @@ public class CircularList<T> {
     private int count;
 
 
-
     public CircularList() {
         head = tail;
         count = 0;
@@ -19,7 +18,7 @@ public class CircularList<T> {
             head = node;
             head.next = tail;
             tail = head;
-        } else  {
+        } else {
             tail.next = node;
             node.next = head;
             tail = node;
@@ -29,7 +28,7 @@ public class CircularList<T> {
     }
 
     public boolean delete(T element, int range) {
-        if (this.count<1) {
+        if (this.count < 1) {
             head = tail;
             count = 0;
             return false;
@@ -42,7 +41,7 @@ public class CircularList<T> {
             this.count--;
             return true;
         } else {
-            for (int i=0; i<range-1; i++) {
+            for (int i = 0; i < range - 1; i++) {
                 if (current.next.element == element) {
                     current.next = current.next.next;
                     this.count--;
@@ -57,7 +56,7 @@ public class CircularList<T> {
 
 
     public void moveHeadForward(int num) {
-        for (int i=0; i<num; i++) {
+        for (int i = 0; i < num; i++) {
             try {
                 head = head.next;
                 tail = tail.next;
@@ -69,24 +68,24 @@ public class CircularList<T> {
 
 
     public T currentOne() {
-        if (count==0) {
+        if (count == 0) {
             return null;
         }
-        return (T)head.element;
+        return (T) head.element;
     }
 
     public T lastOne() {
-        if (count==0) {
+        if (count == 0) {
             return null;
         }
-        return (T)tail.element;
+        return (T) tail.element;
     }
 
     public String toString() {
         String str = "";
         LinkedNode current = head;
         int nodeNum = count;
-        while (nodeNum >0) {
+        while (nodeNum > 0) {
             str += (current.element + "_");
             //System.out.println(current.element);
             current = current.next;
