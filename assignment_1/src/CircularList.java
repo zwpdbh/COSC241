@@ -1,3 +1,4 @@
+//package week09;
 /**
  * The circular list is implemented similar to a stack and is used as the
  * internal representation of the exam pile.There are three datafields that
@@ -10,21 +11,21 @@
 public class CircularList<T> {
 
     /**
-     * Datafield representing the head of the CircularList
+     * Datafield representing the head of the CircularList.
      */
     private LinkedNode<T> head;
     /**
-     * Datafield representing the tail of the CircularList
+     * Datafield representing the tail of the CircularList.
      */
     private LinkedNode<T> tail;
     /**
-     * Datafield representing the size of the CircularList
+     * Datafield representing the size of the CircularList.
      */
     private int count;
 
 
     /**
-     * Default Constructor sets datafields
+     * Default Constructor sets datafields.
      */
     public CircularList() {
         head = tail;
@@ -52,15 +53,18 @@ public class CircularList<T> {
     }
 
     /**
-     * The delete class has two functions. First it checks to see if the parameter
-     * <code>element</code> is in the CircularList within the specified <code>depth</code>.
-     * The second is if the parameter value is found, the method removes the node from
-     * the CicularList by moving the pointer for the <code>head</code> by a specified
-     * <code>depth</code> and then moving the pointer for <code>tail</code> to the new head.
-     * If the desired element is found then the method returns true, otherwise returns false.
+     * The delete class has two functions. First it checks to 
+     * see if the parameter <code>element</code> is in the CircularList within 
+     * the specified <code>depth</code>. 
+     * <p>The second is if the parameter value is found, the method removes the 
+     * node from the CicularList by moving the pointer 
+     * for the <code>head</code> by a 
+     * specified <code>depth</code> and then moving the pointer for 
+     * <code>tail</code> to the new head. If the desired element is found 
+     * then the method returns true, otherwise returns false.
      *
      * @param element to remove from the CircularList.
-     * @param range   the number of elements to remove.
+     * @param depth   the number of elements to remove.
      * @return boolean if delete is successful or not.
      */
     public boolean delete(T element, int depth) {
@@ -101,7 +105,7 @@ public class CircularList<T> {
                 head = head.next;
                 tail = tail.next;
             } catch (NullPointerException e) {
-                System.out.println(e);
+                System.err.println(e);
             }
         }
     }
@@ -141,15 +145,15 @@ public class CircularList<T> {
     }
 
     /**
-     * Private inner class LinkedNode represents each node in the CircularList
+     * Private inner class LinkedNode represents each node in the CircularList.
      */
     private class LinkedNode<T> {
         /**
-         * The value represented by the node
+         * The value represented by the node.
          */
         T element;
         /**
-         * A reference the current nodes neighbour
+         * A reference the current nodes neighbour.
          */
         LinkedNode<T> next;
 

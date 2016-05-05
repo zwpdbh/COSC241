@@ -1,3 +1,5 @@
+//package week09;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +17,7 @@ import java.util.Scanner;
  * @author William Sanson <willysanson@hotmail.com>
  * @author Frank Zhao
  */
-
+ 
 public class EP implements ExamPile {
 
     /**
@@ -33,18 +35,23 @@ public class EP implements ExamPile {
             try {
                 firstArg = Integer.parseInt(args[0]);
             } catch (NumberFormatException e) {
-                System.err.println("Argument" + args[0] + " must be an integer.");
+                System.err.println("Argument" + args[0] + "must be an integer");
                 firstArg = 1;
             }
         }
 
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
+        while(scanner.hasNextLine()){
             List<Integer> exams = new ArrayList<Integer>();
-            Scanner scan = new Scanner(scanner.nextLine());
-            while (scan.hasNext()) {
+            String str = scanner.nextLine();
+            if(str.equals("")){
+                System.err.println("Empty pile!");
+            }
+            Scanner scan = new Scanner(str);
+            while(scan.hasNextInt()){
                 exams.add(scan.nextInt());
             }
+            
             EP ep = new EP();
             ep.setDepth(firstArg);
             if (exams.size() != 0) {
@@ -52,29 +59,21 @@ public class EP implements ExamPile {
             } else {
                 continue;
             }
-            System.out.println(ep.sortingSteps());
-        }
 
+            System.out.println(ep.sortingSteps());
+        }        
     }//end main
 
-    /**
-     * Creates an instance of CircularList of type Integer which will represent the exam pile
-     */
+    /**Creates an instance of CircularList which will represent the exam pile.*/
     public CircularList<Integer> cirPile = new CircularList<Integer>();
-    /**
-     * The max is the max number in the pile
-     */
+    /**The max is the max number in the pile.*/
     private int max;
-    /**
-     * The min is the min number in the pile
-     */
+    /**The min is the min number in the pile.*/
     private int min;
-    /**
-     * The depth at which the pile is searched per step.
-     */
+    /**The depth at which the pile is searched per step.*/
     public int depth = 1;
 
-    /**
+     /**
      * Initialises the pile of exams to consist of the contents of the list
      * <code>items</code>, adding each value to a new node in cirPile.
      *
@@ -85,12 +84,12 @@ public class EP implements ExamPile {
         try {
             max = min = items.get(0);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(e);
+            System.err.println(e);
             System.out.println(items.toString());
             System.exit(1);
         }
         max = min = items.get(0);
-        for (Integer each : items) {
+        for (Integer each: items) {
             cirPile.add(each);
 
             if (each > max) {
@@ -101,16 +100,16 @@ public class EP implements ExamPile {
             }
         }
     }
-
+      
 
     /**
-     * Calls the <code>currentOne()</code> method on the CircularList object
+     * Calls the <code>currentOne()</code> method on the CircularList object 
      * which returns the value at its head.
-     *
+     * 
      * @return the first element in the pile
      */
     @Override
-    public int peek() throws EmptyPileException {
+    public int peek() throws EmptyPileException  {
 
         if (cirPile.currentOne() == null) {
             throw new EmptyPileException("the pile is empty");
@@ -118,7 +117,7 @@ public class EP implements ExamPile {
             return cirPile.currentOne();
         }
     }
-
+    
 
     /**
      * Looks throught the pile to a specified <code>depth</code> by
@@ -131,8 +130,8 @@ public class EP implements ExamPile {
      * @return the given value paramerter if found in the pile.
      */
     @Override
-    public int mark(int depth, int value) throws EmptyPileException {
-        if (cirPile.count() == 0) {
+    public int mark(int depth, int value) throws EmptyPileException{
+        if (cirPile.count()==0) {
             throw new EmptyPileException("the pile is empty");
         }
         if (cirPile.delete(value, depth)) {
@@ -143,14 +142,14 @@ public class EP implements ExamPile {
     }
 
     /**
-     * Moves the current head pointer of the circular list <code>count</code>
+     * Moves the current head pointer of the circular list <code>count</code> 
      * nodes forawrd, essentially placing them at the bottom of the pile.
-     *
+     * 
      * @param count the number of exams to go to the bottom
      */
     @Override
-    public void delay(int count) throws EmptyPileException {
-        if (cirPile.count() == 0) {
+    public void delay(int count) throws EmptyPileException{
+        if (cirPile.count()==0) {
             throw new EmptyPileException("the pile is empty");
         }
         cirPile.moveHeadForward(count);
@@ -161,7 +160,7 @@ public class EP implements ExamPile {
      * steps taken to mark a pile of exams.
      * <p>
      * The method uses a loop to iterate over the  exam pile by calling the
-     * method <code>mark()</code> and searching for <code>mark</code> which
+     * method <code>mark()</code> and searching for <code>mark</code> which 
      * begins at 0 and up to n-1.
      * <p>
      * If the value is found, an 'M' is added to the string, else a 'D' is
@@ -174,12 +173,11 @@ public class EP implements ExamPile {
         try {
             this.peek();
         } catch (EmptyPileException e) {
-            System.out.println(e);
-            return "";
+            System.err.println(e);
         }
         StringBuilder steps = new StringBuilder();
         int mark = min;
-        while (mark <=max) {
+        while (mark<=max) {
             try {
                 int result = mark(depth, mark);
                 if (result == -1) {
@@ -190,20 +188,20 @@ public class EP implements ExamPile {
                     mark++;
                 }
             } catch (EmptyPileException e) {
-                System.out.println(e);
+                System.err.println(e);
             }
         }
         return steps.toString();
     }
-
+    
     /**
-     * The method setDepth takes an parameter of type int and
+     * The method setDepth takes an parameter of type int and 
      * uses it to set the datafield depth.
-     *
+     * 
      * @param depth input to set datafield
      */
     public void setDepth(int depth) {
         this.depth = depth;
     }
-
+    
 }//end class
