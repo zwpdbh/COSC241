@@ -3,12 +3,29 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Created by zw on 4/17/16.
- * The EP class is implemented by CircularList which is a List its tail is
- * pointed to its head.
+ * This class loads a pile of exams into an instance of CirclularList,
+ * and iterates throught the pile marking from integer 0 to n-1. The pile
+ * is searched by default with a depth of 1, but this can be set to any
+ * value with the <code>setDepth()</code> method. Each search to the
+ * specified depth only counts as one step.
+ * <p>
+ * Every successful mark,an 'M' is added to a string, and every failed mark
+ * a 'D' is added to the string. The string is then printed and returned.
+ *
+ * @author William Sanson <willysanson@hotmail.com>
+ * @author Frank Zhao
  */
+
 public class EP implements ExamPile {
 
+    /**
+     * The starting point of the program. Main method contains a loops that
+     * while there is input, reads one line at a time of integer values which
+     * it adds to a List, and then loads it into an instance of <code>EP</code>
+     * where sorting steps are perfored.
+     *
+     * @param args takes input from the command line to set <code>depth</code>
+     */
     public static void main(String[] args) {
         int firstArg = 1;
 
@@ -21,38 +38,59 @@ public class EP implements ExamPile {
             }
         }
 
-        Scanner input = new Scanner(System.in);
-        while (input.hasNextLine()) {
-            String inputStr = input.nextLine();
-            if (inputStr.contentEquals("")) {
-                return;
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            List<Integer> exams = new ArrayList<Integer>();
+            Scanner scan = new Scanner(scanner.nextLine());
+            while (scan.hasNext()) {
+                exams.add(scan.nextInt());
             }
             EP ep = new EP();
-            ep.setDEPTH(firstArg);
-            ep.load(testList(inputStr));
+            ep.setDepth(firstArg);
+            if (exams.size() != 0) {
+                ep.load(exams);
+            } else {
+                continue;
+            }
             System.out.println(ep.sortingSteps());
         }
-    }
 
+    }//end main
+
+    /**
+     * Creates an instance of CircularList of type Integer which will represent the exam pile
+     */
     public CircularList<Integer> cirPile = new CircularList<Integer>();
-    
     /**
-     *The max is the max number in the pile
-     *The min is the min number in the pile
-     *So the difference is the the size of the cirPile
-     * */
+     * The max is the max number in the pile
+     */
     private int max;
+    /**
+     * The min is the min number in the pile
+     */
     private int min;
+    /**
+     * The depth at which the pile is searched per step.
+     */
     public int depth = 1;
-    public String steps = "";
 
     /**
-     * load a List of Integer to get ready to mark
-     * */
+     * Initialises the pile of exams to consist of the contents of the list
+     * <code>items</code>, adding each value to a new node in cirPile.
+     *
+     * @param items a list of type Integer representing exams.
+     */
     @Override
     public void load(List<Integer> items) {
+        try {
+            max = min = items.get(0);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e);
+            System.out.println(items.toString());
+            System.exit(1);
+        }
         max = min = items.get(0);
-        for (Integer each: items) {
+        for (Integer each : items) {
             cirPile.add(each);
 
             if (each > max) {
@@ -62,34 +100,17 @@ public class EP implements ExamPile {
                 min = each;
             }
         }
-        steps = "";
     }
-    
-    
-    /**
-     * another method which can load a array of Integer to get to mark
-     * */
-    public void loadWithArray(int[] data) {
-        max = min = data[0];
-        for (int each: data) {
-            cirPile.add(each);
-            if (each > max) {
-                max = each;
-            }
-            if (each < min) {
-                min = each;
-            }
-        }
-        steps = "";
-    }
-    
+
 
     /**
-     * return the current element in the CircularList, which is the head of the
-     * CircularList.
-     * */
+     * Calls the <code>currentOne()</code> method on the CircularList object
+     * which returns the value at its head.
+     *
+     * @return the first element in the pile
+     */
     @Override
-    public int peek() throws EmptyPileException  {
+    public int peek() throws EmptyPileException {
 
         if (cirPile.currentOne() == null) {
             throw new EmptyPileException("the pile is empty");
@@ -97,86 +118,92 @@ public class EP implements ExamPile {
             return cirPile.currentOne();
         }
     }
-    
+
+
     /**
-     * This method try to mark a certain paper within depth
-     * It returen the an int as shown the result of it.
-     * If succeed, return marked value, otherwise return -1, means failed and
-     * moved to the next several papers, controled by depth
-     * */
+     * Looks throught the pile to a specified <code>depth</code> by
+     * calling the <code>delete()</code> method on cirPile. If it
+     * succeeds and the <code>value</code> is found within the depth,
+     * the value is returned, otherwise it failed and returns -1.
+     *
+     * @param depth specifies how deep to look within the pile.
+     * @param value specifies which value to look for.
+     * @return the given value paramerter if found in the pile.
+     */
     @Override
-    public int mark(int depth, int value) throws EmptyPileException{
-        if (cirPile.count()==0) {
+    public int mark(int depth, int value) throws EmptyPileException {
+        if (cirPile.count() == 0) {
             throw new EmptyPileException("the pile is empty");
         }
         if (cirPile.delete(value, depth)) {
-            steps += "M";
             return value;
         } else {
-            cirPile.moveHeadForward(depth);
-            steps += "D";
             return -1;
         }
     }
-    
+
     /**
-     * It makes the current pointer which is the head move to the next several
-     * nodes, controled by count.
-     * */
+     * Moves the current head pointer of the circular list <code>count</code>
+     * nodes forawrd, essentially placing them at the bottom of the pile.
+     *
+     * @param count the number of exams to go to the bottom
+     */
     @Override
-    public void delay(int count) throws EmptyPileException{
-        if (cirPile.count()==0) {
+    public void delay(int count) throws EmptyPileException {
+        if (cirPile.count() == 0) {
             throw new EmptyPileException("the pile is empty");
         }
         cirPile.moveHeadForward(count);
     }
 
     /**
-     * Constructs a string if 'M' and 'S' characters that represent
+     * Constructs a string of 'M' and 'S' characters that represent
      * steps taken to mark a pile of exams.
      * <p>
-     * The method uses a loop iterate over the  exam pile by calling the
-     * method <code>mark()</code> and searching for a <code>currExam</code>.
+     * The method uses a loop to iterate over the  exam pile by calling the
+     * method <code>mark()</code> and searching for <code>mark</code> which
+     * begins at 0 and up to n-1.
      * <p>
      * If the value is found, an 'M' is added to the string, else a 'D' is
      * added and the exam goes to the bottom of the pile by calling
      * <code>delay()</code> method.
      *
-     * @return the steps taken, represented by M's and D's to mark the pile.
+     * @return steps taken to mark pile of exams
      */
     public String sortingSteps() {
+        try {
+            this.peek();
+        } catch (EmptyPileException e) {
+            System.out.println(e);
+            return "";
+        }
+        StringBuilder steps = new StringBuilder();
         int mark = min;
-        while (mark<=max) {
+        while (mark <=max) {
             try {
                 int result = mark(depth, mark);
                 if (result == -1) {
-                    continue;
+                    steps.append("D");
+                    delay(depth);
                 } else {
+                    steps.append("M");
                     mark++;
                 }
             } catch (EmptyPileException e) {
                 System.out.println(e);
             }
         }
-        return steps;
+        return steps.toString();
     }
-    
+
     /**
-     * setter method for set the depth
-     * */
-    public void setDEPTH(int depth) {
+     * The method setDepth takes an parameter of type int and
+     * uses it to set the datafield depth.
+     *
+     * @param depth input to set datafield
+     */
+    public void setDepth(int depth) {
         this.depth = depth;
     }
-    
-    /**
-     * a method for testing result in main method
-     * */
-    public static ArrayList<Integer> testList(String str) {
-        ArrayList<Integer> test = new ArrayList<Integer>();
-        String[] arrOfNum = str.split(" ");
-        for (String each: arrOfNum) {
-            test.add(Integer.parseInt(each));
-        }
-        return test;
-    }
-}
+
+}//end class
