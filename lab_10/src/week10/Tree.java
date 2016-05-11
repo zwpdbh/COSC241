@@ -89,15 +89,27 @@ public class Tree<T> {
     }
 
     public String toIndentedString() {
+        return indentString(1);
+    }
+
+    private String indentString(int depth) {
         String str = this.rootValue.toString();
         if (this.children.size()==0) {
             return str;
         } else {
             for (int i=0; i<this.children.size();i++) {
-                str +=  "\n" + this.children.get(i).toIndentedString();
+                str +=  "\n" + blank(depth) + this.children.get(i).indentString(depth+1);
             }
         }
         return str;
+    }
+
+    private String blank(int n) {
+        String s = "";
+        for (int i=0; i<n; i++) {
+            s += "  ";
+        }
+        return s;
     }
 
     /** A helper method for testing (used by main).  Searches tree for
