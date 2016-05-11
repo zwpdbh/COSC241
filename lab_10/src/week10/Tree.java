@@ -39,7 +39,14 @@ public class Tree<T> {
 
     public int maxDegree() {
         // implement this method
-        return 0;
+        int degree = this.children.size();
+        for (int i=0;i<this.children.size();i++) {
+            if (this.children.get(i).maxDegree() > degree) {
+                degree = this.children.get(i).maxDegree();
+            }
+        }
+        
+        return degree;
     }
 
     private int degreeOfCurrentRoot() {
