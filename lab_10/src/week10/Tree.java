@@ -89,7 +89,15 @@ public class Tree<T> {
     }
 
     public String toIndentedString() {
-        return "Not implemented yet!";
+        String str = this.rootValue.toString();
+        if (this.children.size()==0) {
+            return str;
+        } else {
+            for (int i=0; i<this.children.size();i++) {
+                str +=  "\n" + this.children.get(i).toIndentedString();
+            }
+        }
+        return str;
     }
 
     /** A helper method for testing (used by main).  Searches tree for
