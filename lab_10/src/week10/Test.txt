@@ -1,5 +1,7 @@
 food
   meat
+    chicken
+    beef
     fish
       salmon
       cod
@@ -7,3 +9,4 @@ food
       shark
   fruit
   vegetable
+    cabbage
