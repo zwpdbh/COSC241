@@ -45,13 +45,10 @@ public class Tree<T> {
                 degree = this.children.get(i).maxDegree();
             }
         }
-        
+
         return degree;
     }
 
-    private int degreeOfCurrentRoot() {
-        return this.children.size();
-    }
 
     public void add(Tree<T> child) {
         this.children.add(child);
@@ -83,9 +80,6 @@ public class Tree<T> {
         return nodes;
     }
 
-//    private List<T> traversals() {
-//
-//    }
 
     public String toString() {
         if (children.isEmpty()) {
@@ -95,7 +89,6 @@ public class Tree<T> {
     }
 
     public String toIndentedString() {
-        // implement this method
         return "Not implemented yet!";
     }
 
