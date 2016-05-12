@@ -124,7 +124,7 @@ public class Tree<T> {
      * @return String as indent format.
      * */
     public String toIndentedString() {
-        return indentString(1);
+        return indentString(1) + "\n";
     }
 
     /**
