@@ -25,12 +25,10 @@
       <file leaf-file-name="LinkedBST.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lab_11/src/week11/LinkedBST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="165" column="17" selection-start-line="165" selection-start-column="17" selection-end-line="165" selection-end-column="17" />
+            <state relative-caret-position="-630">
+              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4722#4723#0" expanded="true" />
-                <element signature="e#4746#4747#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -910,12 +908,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lab_11/src/week11/LinkedBST.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="165" column="17" selection-start-line="165" selection-start-column="17" selection-end-line="165" selection-end-column="17" />
+        <state relative-caret-position="-630">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4722#4723#0" expanded="true" />
-            <element signature="e#4746#4747#0" expanded="true" />
           </folding>
         </state>
       </provider>
