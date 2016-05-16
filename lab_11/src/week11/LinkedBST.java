@@ -143,7 +143,15 @@ public class LinkedBST<T extends Comparable<T>> {
      */
     public int sizeAbove(T low) {
         // implement this for part 2
-        return 0;
+        if (root == null) {
+            return 0;
+        }
+
+        if (root.compareTo(low) >= 0) {
+            return 1 + (this.right != null ? this.right.size() : 0) + (this.left != null ? this.left.sizeAbove(low) : 0);
+        } else {
+            return (this.right != null ? this.right.sizeAbove(low) : 0);
+        }
     }
 
     /**
@@ -155,7 +163,6 @@ public class LinkedBST<T extends Comparable<T>> {
      *         <code>high</code>.
      */
     public int sizeBelow(T high) {
-        // implement this for part 2
         return 0;
     }
     
