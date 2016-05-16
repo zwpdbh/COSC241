@@ -73,17 +73,20 @@ public class LinkedBST<T extends Comparable<T>> {
      * @return the height of this tree.
      */
     public int height() {
+        return numOfLevel() == 0 ? 0 : numOfLevel() -1;
+    }
+
+    /**
+     * Helper method which return the max level of tree.
+     * @return the max level of tree.
+     * */
+    private int numOfLevel() {
         if (root==null) {
             return 0;
-        }
-        if (this.left != null && this.right != null) {
-            return 1 + Math.max(this.left.height(), this.right.height());
-        } else if (this.left == null && this.right == null) {
-            return 1;
-        } else if (this.left != null && this.right == null) {
-            return 1 + this.left.height();
         } else {
-            return 1 + this.right.height();
+            return 1 +
+                    Math.max((this.left != null ? this.left.numOfLevel() : 0),
+                    (this.right != null ? this.right.numOfLevel() : 0));
         }
     }
 
@@ -148,7 +151,8 @@ public class LinkedBST<T extends Comparable<T>> {
         }
 
         if (root.compareTo(low) >= 0) {
-            return 1 + (this.right != null ? this.right.size() : 0) + (this.left != null ? this.left.sizeAbove(low) : 0);
+            return 1 + (this.right != null ? this.right.size() : 0)
+                    + (this.left != null ? this.left.sizeAbove(low) : 0);
         } else {
             return (this.right != null ? this.right.sizeAbove(low) : 0);
         }
@@ -170,7 +174,8 @@ public class LinkedBST<T extends Comparable<T>> {
         if (root.compareTo(high) > 0) {
             return (this.left != null) ? this.left.sizeBelow(high) : 0;
         } else if (root.compareTo(high) < 0){
-            return 1 + (this.left != null ? this.left.size() : 0) + (this.right != null ? this.right.sizeBelow(high) : 0);
+            return 1 + (this.left != null ? this.left.size() : 0)
+                    + (this.right != null ? this.right.sizeBelow(high) : 0);
         } else {
             return 0;
         }
@@ -187,8 +192,7 @@ public class LinkedBST<T extends Comparable<T>> {
      *         high (exclusive).
      */
     public int sizeBetween(T low, T high) {
-        // implement this for part 2
-        return 0;
+        return sizeAbove(low) + sizeBelow(high) - size();
     }
 
     /**
