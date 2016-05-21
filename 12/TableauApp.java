@@ -1,10 +1,7 @@
 /**
  * Created by zw on 3/28/16.
  */
-package week05;
-
-import java.util.HashSet;
-import java.util.Set;
+package week12;
 
 /**
  * Skeleton code for an array based implementation of Young's tableau.
@@ -73,16 +70,13 @@ public class TableauApp {
      * @return returns true if no row is longer than a preceding row.
      */
     public static boolean rowLengthsDecrease(int[][] t) {
-        for (int i=1; i<t.length; i++) {
-            try {
-                int currentRowLength = t[i].length;
-                int nextRowLength = t[i+1].length;
-                if (currentRowLength<nextRowLength) {
-                    return false;
-                }
-            } catch(ArrayIndexOutOfBoundsException ex) {
-                break;
+        int current = t[0].length;
+        for(int i=1; i<t.length; i++) {
+            int next = t[i].length;
+            if(current<next) {
+                return false;
             }
+            current = next;
         }
         return true;
     }
@@ -95,22 +89,20 @@ public class TableauApp {
      * @return returns true if integers are increasing.
      */
     public static boolean rowValuesIncrease(int[][] t) {
-        for (int[] rows : t) {
-            for (int i = 0; i < rows.length - 1; i++) {
-                try {
-                    int current = rows[i];
-                    int next = rows[i + 1];
-                    if (next == 0) {
-                        break;
-                    }
-                    if (next < current) {
-                        return false;
-                    }
-                } catch (ArrayIndexOutOfBoundsException ex) {
-                    System.out.println(ex);
+        for(int[] row: t) {
+            int current = row[0];
+            for(int col: row) {
+                int next = col;
+                if(next == 0) {
+                    break;
                 }
+                if(current>next) {
+                    return false;
+                }
+                current = next;
             }
         }
+
         return true;
 
     }
@@ -124,9 +116,25 @@ public class TableauApp {
      * the integers are increasing, otherwise false.
      */
     public static boolean columnValuesIncrease(int[][] t) {
-        int[][] tTranspose = transpose(t);
+        int[][] transpose = transfer(t);
 
-        return rowValuesIncrease(tTranspose);
+        if(rowValuesIncrease(transpose)) {
+            return true;
+        } else {
+            return false;    
+        }
+    }
+
+    private static int[][] transfer(int[][] t) {
+        int[][] tTranspose = new int[t[0].length][t.length];
+
+        for(int i=0; i<t.length; i++) {
+            for(int j=0; j<t[i].length; j++) {
+                tTranspose[j][i] = t[i][j];
+            }
+        }
+
+        return tTranspose;
     }
 
     /**
@@ -138,44 +146,27 @@ public class TableauApp {
      * @return true if it is.
      */
     public static boolean isSetOf1toN(int[][] t) {
-        Set<Integer> myIntSet = new HashSet<Integer>();
-        int max = t[0][0];
-        for (int[] rows : t) {
-            for (int col : rows) {
-                myIntSet.add(Integer.valueOf(col));
-                if (max <= col) {
-                    max = col;
+        int count = 0;
+        for(int[] row: t) {
+            count += row.length;
+        }
+
+        for(int i=1; i<=count; i++) {
+            boolean founded = false;
+            for(int[] row: t) {
+                for(int col: row) {
+                    if(col == i) {
+                        founded = true;
+                    }
                 }
             }
-        }
-        if (myIntSet.size() != max) {
-            return false;
+            if(!founded) {
+                return false;
+            }
         }
 
         return true;
     }
 
-    /**
-    * Helper function return a t transpose.
-    * @param t a two-dimensional array.
-    * @return transpose which is t's transpose
-    */
-    private static int[][] transpose(int[][] t){
-        int numberOfRow = t.length;
-        int numberOfColumn= t[0].length;
-
-        int sizeOfRow = numberOfColumn;
-        int sizeOfColumn = numberOfRow;
-
-        int[][] transpose = new int[sizeOfRow][sizeOfColumn];
-
-        for (int i=0; i<t.length; i++) {
-            for (int j=0;j<t[i].length; j++) {
-                transpose[j][i] = t[i][j];
-            }
-        }
-
-        return transpose;
-    }
 }
 
