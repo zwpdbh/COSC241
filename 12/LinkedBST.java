@@ -2,8 +2,8 @@ package week12;
 
 import java.util.Scanner;
 
-
 import static week12.LinkedBST.Direction.*;
+
 /**
  *  A binary tree implementation using links. We assume that the tree
  *  is not to store 'null' elements. In particular if the root node
@@ -50,20 +50,21 @@ public class LinkedBST<T extends Comparable<T>> {
     public void add(T element) {
         if(root == null) {
             root = element;
+            return;
         }
         if(root.compareTo(element)==0) {
             return;
-        } else if (root.compareTo(element) > 0) {
-            if(this.left != null) {
-                this.left.add(element);
+        } else if (root.compareTo(element)>0) {
+            if(left == null) {
+                left = new LinkedBST<T>(element);
             } else {
-                this.left = new LinkedBST<T>(element);
+                left.add(element);
             }
         } else {
-            if(this.right != null) {
-                this.right.add(element);
+            if(right == null) {
+                right = new LinkedBST<T>(element);
             } else {
-                this.right = new LinkedBST<T>(element);
+                right.add(element);
             }
         }
     }
@@ -73,19 +74,29 @@ public class LinkedBST<T extends Comparable<T>> {
      *
      * @return the height of this tree.
      */
-    private int level() {
-        if(this.root==null) {
-            return 0;
-        } else {
-            int heightLeft = (this.left!=null) ? this.left.level() : 0;
-            int heightRight = (this.right!=null) ? this.right.level() : 0;
-            return (heightLeft > heightRight) ? 1+heightLeft : 1 + heightRight;
-        }
-    }
+   
 
     public int height() {
-        return (this.level() - 1 < 0) ? 0 :  this.level() - 1;   
+         
+          return (level()-1<0) ? 0 : level()-1;
     }
+
+    private int level() {
+        if (root == null) {
+            return 0;
+        }
+        int leftH = (left == null) ? 0 : left.level();
+        int rightH = (right == null) ? 0 : right.level();
+        
+        if(leftH > rightH) {
+            return leftH + 1;
+        } else {
+            return rightH + 1;
+        }
+
+    }
+
+  
 
     /**
      *  Searches for the given target within this tree.
@@ -94,18 +105,17 @@ public class LinkedBST<T extends Comparable<T>> {
      * @return true if target is found, otherwise false.
      */
     public boolean search(T target) {
-        if(this.root==null) {
+        if(root == null) {
             return false;
         }
-
-        if(this.root == target) {
+        if(root.compareTo(target) == 0) {
             return true;
         } else {
-            boolean leftResult = (this.left!=null) ?  this.left.search(target) : false;
-            if(leftResult) {
+            boolean leftS = (left == null) ? false : left.search(target);
+            if(leftS) {
                 return true;
             } else {
-                return (this.right!=null) ? this.right.search(target) : false;
+                return (right == null) ? false : right.search(target);
             }
         }
     }
@@ -116,14 +126,16 @@ public class LinkedBST<T extends Comparable<T>> {
      * @return the size of this BST.
      */
     public int size() {
-        if(this.root == null) {
+        if(root == null) {
             return 0;
-        } else {
-            int numLeft = (this.left != null) ? this.left.size() : 0;
-            int numRight = (this.right != null) ? this.right.size() : 0;
+        }    
 
-            return 1+numLeft + numRight;
-        }
+        int leftN = (left == null) ? 0 : left.size();
+        int rightN = (right == null) ? 0 : right.size();
+
+
+        return 1 + leftN + rightN;
+       
     }
 
     /**
@@ -135,14 +147,15 @@ public class LinkedBST<T extends Comparable<T>> {
      *         parameter <code>low</code>.
      */
     public int sizeAbove(T low) {
-        if(this.root == null) {
+        if(root == null) {
             return 0;
-        }
-        if(this.root.compareTo(low) < 0) {
-            return (this.right != null) ? this.right.sizeAbove(low) : 0; 
+        }   
+        if(root.compareTo(low)<0) {
+            return (right == null) ? 0 : right.sizeAbove(low);
         } else {
-            int rightSize = (this.right != null) ? this.right.size() : 0;
-            return (this.left!=null) ? (this.left.sizeAbove(low) + 1 + rightSize) : (1 + rightSize); 
+            int leftN = (left == null) ? 0 : left.sizeAbove(low);
+            int rightN = (right == null) ? 0 : right.size();
+            return 1 + leftN + rightN;
         }
     }
 
@@ -155,19 +168,19 @@ public class LinkedBST<T extends Comparable<T>> {
      *         <code>high</code>.
      */
     public int sizeBelow(T high) {
-        if(this.root == null) {
+        if(root == null) {
             return 0;
         }
 
-        if(this.root.compareTo(high)>0) {
-            return (this.left!=null) ? this.left.sizeBelow(high) : 0; 
-        } else if (this.root.compareTo(high)<0) {
-            int numLeft = (this.left!=null) ? this.left.size() : 0;
-            return (this.right!=null) ? 1 + numLeft + this.right.sizeBelow(high) : 1 + numLeft;
+        if(root.compareTo(high) >= 0) {
+            return (left == null) ? 0 : left.sizeBelow(high);
         } else {
-            return (this.left != null) ? this.left.size() : 0;
+            int rightN = (right == null) ? 0 : right.sizeBelow(high);
+            int leftN = (left == null) ? 0 : left.size();
+            return 1 + rightN + leftN;
         }
     }
+
     
     /**
      *  Returns how many elements are greater than or equal to the
@@ -180,9 +193,7 @@ public class LinkedBST<T extends Comparable<T>> {
      *         high (exclusive).
      */
     public int sizeBetween(T low, T high) {
-        // implement this for part 2
-        //
-        return this.sizeBelow(high) + this.sizeAbove(low) - this.size();
+        return sizeBelow(high) + sizeAbove(low) - size();    
     }
 
     /**

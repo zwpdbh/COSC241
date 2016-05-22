@@ -70,13 +70,12 @@ public class TableauApp {
      * @return returns true if no row is longer than a preceding row.
      */
     public static boolean rowLengthsDecrease(int[][] t) {
-        int current = t[0].length;
-        for(int i=1; i<t.length; i++) {
-            int next = t[i].length;
-            if(current<next) {
+        int curr = t[0].length;
+        for(int[] row: t) {
+            if(curr < row.length) {
                 return false;
             }
-            current = next;
+            curr = row.length;
         }
         return true;
     }
@@ -90,19 +89,17 @@ public class TableauApp {
      */
     public static boolean rowValuesIncrease(int[][] t) {
         for(int[] row: t) {
-            int current = row[0];
+            int curr = row[0];
             for(int col: row) {
-                int next = col;
-                if(next == 0) {
+                if(col==0) {
                     break;
                 }
-                if(current>next) {
+                if(curr>col) {
                     return false;
                 }
-                current = next;
+                curr = col;
             }
         }
-
         return true;
 
     }
@@ -116,26 +113,26 @@ public class TableauApp {
      * the integers are increasing, otherwise false.
      */
     public static boolean columnValuesIncrease(int[][] t) {
-        int[][] transpose = transfer(t);
-
-        if(rowValuesIncrease(transpose)) {
+        int[][] tf = tf(t);
+        if(rowValuesIncrease(tf)) {
             return true;
-        } else {
-            return false;    
         }
+        return false;
     }
 
-    private static int[][] transfer(int[][] t) {
-        int[][] tTranspose = new int[t[0].length][t.length];
+    public static int[][] tf(int[][] t) {
+        int[][] transpose = new int[t[0].length][t.length];
 
         for(int i=0; i<t.length; i++) {
             for(int j=0; j<t[i].length; j++) {
-                tTranspose[j][i] = t[i][j];
+                transpose[j][i] = t[i][j];
             }
         }
 
-        return tTranspose;
+        return transpose;
+    
     }
+    
 
     /**
      * A method that returns true
@@ -150,12 +147,11 @@ public class TableauApp {
         for(int[] row: t) {
             count += row.length;
         }
-
         for(int i=1; i<=count; i++) {
             boolean founded = false;
             for(int[] row: t) {
                 for(int col: row) {
-                    if(col == i) {
+                    if(col==i) {
                         founded = true;
                     }
                 }

@@ -25,8 +25,8 @@ public class Tableau {
             smallest = new Cell(value);
             return;
         } 
-        
         Integer result = addToRow(smallest, value);
+        
         if(result == null) {
             return;
         } else {
@@ -37,11 +37,9 @@ public class Tableau {
             } else {
                 smallest = smallest.below;
                 addValue(result);
+                smallest = smallestPointer;
             }
         }
-
-        smallest = smallestPointer;
-        
     }
 
     /**
@@ -56,23 +54,25 @@ public class Tableau {
      *         end of the row.
      */
     protected Integer addToRow(Cell curr, int value) {
-        // complete this method
-        Integer currentValue = curr.value;
-        if( currentValue > value) {
+        if(curr.value>value) {
+            int tmp = curr.value;
             curr.value = value;
-            return currentValue;
-        } else if (curr.right == null) {
-            Cell newOne = new Cell(value);
-            newOne.left = curr;
-            curr.right = newOne;
-            if(curr.above!=null) {
-                curr.above.right.below = newOne;
-                newOne.above = curr.above.right;
-            }
-            return null;
+            return tmp;
         } else {
-            return addToRow(curr.right, value);
-        }
+            if(curr.right == null) {
+                Cell c = new Cell(value);
+                c.left = curr;
+                curr.right = c;
+                if(curr.above!=null) {
+                    curr.above.right.below = c;
+                    c.above = curr.above.right;
+                }
+                return null;
+            } else {
+                return addToRow(curr.right, value);
+            }
+        
+        } 
     }
 
 

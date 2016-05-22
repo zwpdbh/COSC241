@@ -23,61 +23,56 @@ public class Tree<T> {
     }
     
     public int size() {
-        if(this.rootValue == null) {
+        if(rootValue == null) {
             return 0;
-        } else if (this.children.isEmpty()) {
-            return 1;
-        } else {
-            int count = 1;
-            for(Tree<T> sub: children) {
-                count += sub.size();
-            }
-            return count;
         }
+        int count = 1;
+        for(Tree<T> t: children) {
+            count += t.size();
+        }
+
+        return count;
     }
     
     public int maxDegree() {
-        int degree = this.children.size();
-        for(Tree<T> t: this.children) {
-            if(t.maxDegree()>degree) {
-                degree = t.maxDegree();
+        int max = children.size();
+        for(Tree<T> t: children) {
+            if(t.maxDegree()>max) {
+                max = t.maxDegree();
             }
         }
-        return degree;
+
+        return max;
     }
     
     public void add(Tree<T> child) {
         // implement this method
-        this.children.add(child);
+       children.add(child); 
     }
 
     public Tree<T> find(T value) {
-        if (rootValue.equals(value)) {
+        if(rootValue == value) {
             return this;
-        }
-        for (Tree<T> child : children) {
-            Tree<T> match = child.find(value);
-            if (match != null) {
-                return match;
+        } else {
+            for(Tree<T> t: children) {
+                Tree<T> match = t.find(value);
+                if(match != null) {
+                    return match;
+                }
             }
+            return null;
         }
-        return null;
     }
     
     public List<T> postOrder() {
-        // implement this method
-        ArrayList<T> nodes = new ArrayList<T>();
-        if(this.rootValue == null) {
-            return nodes;
-        } else {
-            if(!this.children.isEmpty()) {
-                for(Tree<T> t: this.children) {
-                    nodes.addAll(t.postOrder());
-                }
-            } 
-            nodes.add(this.rootValue);
-        }
-        return nodes;
+       ArrayList<T> node = new ArrayList<T>();
+
+       for(Tree<T> t: children) {
+            node.addAll(t.postOrder());
+       }
+
+       node.add(rootValue);
+        return node;
     }
     
     public String toString() {
@@ -90,27 +85,23 @@ public class Tree<T> {
     public String toIndentedString() {
         return indentString(1) + "\n";
     }
-
-    public String indentString(int depth) {
-        String str = (this.rootValue!=null) ? this.rootValue.toString() : "";
-        if(this.children.isEmpty()) {
-            return str;
-        } else {
-            for(Tree<T> t: this.children) {
-                str += "\n" + blank(depth) + t.indentString(depth + 1);
-            }
+    
+    private String indentString(int depth) {
+        String str = (rootValue == null) ? "" : rootValue.toString();
+        for(Tree<T> t: children) {
+            str += "\n" + blank(depth) + t.indentString(depth + 1);
         }
-        return str;
-    }
 
+        return str;
+    } 
+        
     private String blank(int n) {
-        String str = "";
+       String str = "";
         for(int i=1; i<=n; i++) {
             str += "  ";
         }
         return str;
     }
-
     /** A helper method for testing (used by main).  Searches tree for
      *  the given target and adds white space separated children to
      *  the tree matching target if there is one.
