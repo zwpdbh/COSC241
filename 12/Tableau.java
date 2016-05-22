@@ -24,21 +24,20 @@ public class Tableau {
         if(smallest == null) {
             smallest = new Cell(value);
             return;
-        } 
-        Integer result = addToRow(smallest, value);
+        }
         
-        if(result == null) {
+        Integer result = addToRow(smallest, value);
+        if(result==null) {
             return;
+        }
+        if(smallest.below == null) {
+            Cell c = new Cell(result);
+            c.above = smallest;
+            smallest.below = c;
         } else {
-            if(smallest.below == null) {
-                Cell c = new Cell(result);
-                c.above = smallest;
-                smallest.below = c;
-            } else {
-                smallest = smallest.below;
-                addValue(result);
-                smallest = smallestPointer;
-            }
+            smallest = smallest.below;
+            addValue(result);
+            smallest = smallestPointer;
         }
     }
 
@@ -54,25 +53,24 @@ public class Tableau {
      *         end of the row.
      */
     protected Integer addToRow(Cell curr, int value) {
-        if(curr.value>value) {
+        if(curr.value > value) {
             int tmp = curr.value;
             curr.value = value;
             return tmp;
-        } else {
-            if(curr.right == null) {
-                Cell c = new Cell(value);
-                c.left = curr;
-                curr.right = c;
-                if(curr.above!=null) {
-                    curr.above.right.below = c;
-                    c.above = curr.above.right;
-                }
-                return null;
-            } else {
-                return addToRow(curr.right, value);
+        }    
+        if(curr.right == null) {
+            Cell c = new Cell(value);
+            c.left = curr;
+            curr.right = c;
+            if(curr.above != null) {
+                curr.above.right.below = c;
+                c.above = curr.above.right;
             }
-        
-        } 
+            return null;
+        } else {
+            return addToRow(curr.right, value);
+                
+        }
     }
 
 

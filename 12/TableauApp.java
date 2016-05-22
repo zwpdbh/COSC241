@@ -71,8 +71,8 @@ public class TableauApp {
      */
     public static boolean rowLengthsDecrease(int[][] t) {
         int curr = t[0].length;
-        for(int[] row: t) {
-            if(curr < row.length) {
+        for(int[] row : t) {
+            if(curr<row.length) {
                 return false;
             }
             curr = row.length;
@@ -91,7 +91,7 @@ public class TableauApp {
         for(int[] row: t) {
             int curr = row[0];
             for(int col: row) {
-                if(col==0) {
+                if(col == 0) {
                     break;
                 }
                 if(curr>col) {
@@ -114,23 +114,23 @@ public class TableauApp {
      */
     public static boolean columnValuesIncrease(int[][] t) {
         int[][] tf = tf(t);
+
         if(rowValuesIncrease(tf)) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-    public static int[][] tf(int[][] t) {
+    private static int[][] tf(int[][] t) {
         int[][] transpose = new int[t[0].length][t.length];
-
+        
         for(int i=0; i<t.length; i++) {
             for(int j=0; j<t[i].length; j++) {
                 transpose[j][i] = t[i][j];
             }
         }
-
         return transpose;
-    
     }
     
 
@@ -147,11 +147,12 @@ public class TableauApp {
         for(int[] row: t) {
             count += row.length;
         }
+
         for(int i=1; i<=count; i++) {
             boolean founded = false;
             for(int[] row: t) {
                 for(int col: row) {
-                    if(col==i) {
+                    if(col == i) {
                         founded = true;
                     }
                 }

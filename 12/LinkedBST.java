@@ -48,25 +48,23 @@ public class LinkedBST<T extends Comparable<T>> {
      * @param element an element to be added.
      */
     public void add(T element) {
-        if(root == null) {
-            root = element;
-            return;
-        }
-        if(root.compareTo(element)==0) {
-            return;
-        } else if (root.compareTo(element)>0) {
-            if(left == null) {
-                left = new LinkedBST<T>(element);
-            } else {
-                left.add(element);
-            }
+      if(root == null) {
+        root = element;
+        return;
+      } 
+      if(element.compareTo(root)<0) {
+        if(left == null) {
+            left = new LinkedBST<T>(element);
         } else {
-            if(right == null) {
-                right = new LinkedBST<T>(element);
-            } else {
-                right.add(element);
-            }
+            left.add(element);
         }
+      } else {
+        if(right == null){
+            right = new LinkedBST<T>(element);
+        } else {
+            right.add(element);
+        }
+      }
     }
 
     /**
@@ -75,12 +73,11 @@ public class LinkedBST<T extends Comparable<T>> {
      * @return the height of this tree.
      */
    
-    // New method
+
     public int height() {
          if(root==null) {
             return 0;
-         }
-
+         } 
          int leftD = (left == null) ? 0 : left.height() + 1;
          int rightD = (right == null) ? 0 : right.height() + 1;
 
@@ -91,28 +88,19 @@ public class LinkedBST<T extends Comparable<T>> {
          }
     }
 
-    // Old method
-    // public int height() {
-         
-    //       return (level()-1<0) ? 0 : level()-1;
-    // }
-
-    // private int level() {
-    //     if (root == null) {
-    //         return 0;
-    //     }
-    //     int leftH = (left == null) ? 0 : left.level();
-    //     int rightH = (right == null) ? 0 : right.level();
+   private int level() {
+        if(root == null) {
+            return 0;
+        }
+        int leftH = (left == null) ? 0 : left.level();
+        int rightH = (right == null) ? 0 : right.level();
         
-    //     if(leftH > rightH) {
-    //         return leftH + 1;
-    //     } else {
-    //         return rightH + 1;
-    //     }
-
-    // }
-
-  
+        if(leftH > rightH) {
+            return 1 + leftH;
+        } else {
+            return 1 + rightH;
+        }
+   }
 
     /**
      *  Searches for the given target within this tree.
@@ -124,15 +112,15 @@ public class LinkedBST<T extends Comparable<T>> {
         if(root == null) {
             return false;
         }
-        if(root.compareTo(target) == 0) {
+        if(root.equals(target)) {
+            return true;
+        }
+
+        boolean leftS = (left == null) ? false : left.search(target);
+        if(leftS) {
             return true;
         } else {
-            boolean leftS = (left == null) ? false : left.search(target);
-            if(leftS) {
-                return true;
-            } else {
-                return (right == null) ? false : right.search(target);
-            }
+            return (right == null) ? false : right.search(target);
         }
     }
    
@@ -144,13 +132,10 @@ public class LinkedBST<T extends Comparable<T>> {
     public int size() {
         if(root == null) {
             return 0;
-        }    
-
+        }
         int leftN = (left == null) ? 0 : left.size();
         int rightN = (right == null) ? 0 : right.size();
-
-
-        return 1 + leftN + rightN;
+        return 1 + rightN + leftN;
        
     }
 
@@ -163,16 +148,16 @@ public class LinkedBST<T extends Comparable<T>> {
      *         parameter <code>low</code>.
      */
     public int sizeAbove(T low) {
-        if(root == null) {
-            return 0;
-        }   
-        if(root.compareTo(low)<0) {
-            return (right == null) ? 0 : right.sizeAbove(low);
-        } else {
-            int leftN = (left == null) ? 0 : left.sizeAbove(low);
-            int rightN = (right == null) ? 0 : right.size();
-            return 1 + leftN + rightN;
-        }
+       if(root == null) {
+        return 0;
+       } 
+       if(root.compareTo(low)<0) {
+          return (right == null) ? 0 : right.sizeAbove(low);
+       } else {
+          int leftN = (left == null) ? 0 : left.sizeAbove(low);
+          int rightN = (right == null) ? 0 : right.size();
+          return 1 + leftN + rightN;
+       }
     }
 
     /**
@@ -186,9 +171,8 @@ public class LinkedBST<T extends Comparable<T>> {
     public int sizeBelow(T high) {
         if(root == null) {
             return 0;
-        }
-
-        if(root.compareTo(high) >= 0) {
+        } 
+        if(root.compareTo(high)>=0) {
             return (left == null) ? 0 : left.sizeBelow(high);
         } else {
             int rightN = (right == null) ? 0 : right.sizeBelow(high);
@@ -209,7 +193,7 @@ public class LinkedBST<T extends Comparable<T>> {
      *         high (exclusive).
      */
     public int sizeBetween(T low, T high) {
-        return sizeBelow(high) + sizeAbove(low) - size();    
+        return sizeAbove(low) + sizeBelow(high) - size(); 
     }
 
     /**

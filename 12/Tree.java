@@ -28,7 +28,7 @@ public class Tree<T> {
         }
         int count = 1;
         for(Tree<T> t: children) {
-            count += t.size();
+            count += t.size();    
         }
 
         return count;
@@ -37,7 +37,7 @@ public class Tree<T> {
     public int maxDegree() {
         int max = children.size();
         for(Tree<T> t: children) {
-            if(t.maxDegree()>max) {
+            if(max < t.maxDegree()) {
                 max = t.maxDegree();
             }
         }
@@ -51,28 +51,29 @@ public class Tree<T> {
     }
 
     public Tree<T> find(T value) {
-        if(rootValue == value) {
-            return this;
-        } else {
-            for(Tree<T> t: children) {
-                Tree<T> match = t.find(value);
-                if(match != null) {
-                    return match;
-                }
-            }
+        if(rootValue == null) {
             return null;
         }
+        if(rootValue.equals(value)) {
+            return this;
+        }
+        for(Tree<T> t: children) {
+            Tree<T> match = t.find(value);
+            if(match != null) {
+                return match;
+            }
+        }
+        return null;
     }
     
     public List<T> postOrder() {
-       ArrayList<T> node = new ArrayList<T>();
+        ArrayList<T> nodes = new ArrayList<T>();
+        for(Tree<T> t: children) {
+            nodes.addAll(t.postOrder());
+        }
+       nodes.add(rootValue);
 
-       for(Tree<T> t: children) {
-            node.addAll(t.postOrder());
-       }
-
-       node.add(rootValue);
-        return node;
+       return nodes;
     }
     
     public String toString() {
@@ -83,25 +84,28 @@ public class Tree<T> {
     }
     
     public String toIndentedString() {
+        
         return indentString(1) + "\n";
     }
-    
-    private String indentString(int depth) {
+
+    public String indentString(int depth) {
         String str = (rootValue == null) ? "" : rootValue.toString();
         for(Tree<T> t: children) {
-            str += "\n" + blank(depth) + t.indentString(depth + 1);
-        }
-
-        return str;
-    } 
-        
-    private String blank(int n) {
-       String str = "";
-        for(int i=1; i<=n; i++) {
-            str += "  ";
+            str += "\n" + blank(depth) + t.indentString(depth+1);
         }
         return str;
     }
+
+    private String blank(int n) 
+    {
+        String s = "";
+        for(int i=1; i<=n; i++) {
+            s+="  ";
+        }
+        return s;
+    }
+
+
     /** A helper method for testing (used by main).  Searches tree for
      *  the given target and adds white space separated children to
      *  the tree matching target if there is one.
