@@ -75,26 +75,42 @@ public class LinkedBST<T extends Comparable<T>> {
      * @return the height of this tree.
      */
    
-
+    // New method
     public int height() {
-         
-          return (level()-1<0) ? 0 : level()-1;
-    }
-
-    private int level() {
-        if (root == null) {
+         if(root==null) {
             return 0;
-        }
-        int leftH = (left == null) ? 0 : left.level();
-        int rightH = (right == null) ? 0 : right.level();
-        
-        if(leftH > rightH) {
-            return leftH + 1;
-        } else {
-            return rightH + 1;
-        }
+         }
 
+         int leftD = (left == null) ? 0 : left.height() + 1;
+         int rightD = (right == null) ? 0 : right.height() + 1;
+
+         if(leftD > rightD) {
+            return leftD;
+         } else {
+            return rightD;
+         }
     }
+
+    // Old method
+    // public int height() {
+         
+    //       return (level()-1<0) ? 0 : level()-1;
+    // }
+
+    // private int level() {
+    //     if (root == null) {
+    //         return 0;
+    //     }
+    //     int leftH = (left == null) ? 0 : left.level();
+    //     int rightH = (right == null) ? 0 : right.level();
+        
+    //     if(leftH > rightH) {
+    //         return leftH + 1;
+    //     } else {
+    //         return rightH + 1;
+    //     }
+
+    // }
 
   
 
