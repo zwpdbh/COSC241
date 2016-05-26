@@ -199,8 +199,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../coursefiles160/Calculator/Calculator.iml" filepath="$PROJECT_DIR$/../coursefiles160/Calculator/Calculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dummy/Dummy.iml" filepath="$PROJECT_DIR$/Dummy/Dummy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exam_Review/Exam_Review.iml" filepath="$PROJECT_DIR$/Exam_Review/Exam_Review.iml" />
       <module fileurl="file://$PROJECT_DIR$/assignment_1/assignment_1.iml" filepath="$PROJECT_DIR$/assignment_1/assignment_1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/data_structure/data_structure.iml" filepath="$PROJECT_DIR$/data_structure/data_structure.iml" />
       <module fileurl="file://$PROJECT_DIR$/lab_08/lab_08.iml" filepath="$PROJECT_DIR$/lab_08/lab_08.iml" />
       <module fileurl="file://$PROJECT_DIR$/lab_10/lab_10.iml" filepath="$PROJECT_DIR$/lab_10/lab_10.iml" />
       <module fileurl="file://$PROJECT_DIR$/lab_11/lab_11.iml" filepath="$PROJECT_DIR$/lab_11/lab_11.iml" />

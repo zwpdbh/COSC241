@@ -69,7 +69,7 @@ public class Tree<T> {
     public List<T> postOrder() {
         ArrayList<T> nodes = new ArrayList<T>();
         for(Tree<T> t: children) {
-            nodes.addAll(t.postOrder());
+            nodes.addAll(t.postOrder())
         }
        nodes.add(rootValue);
 
