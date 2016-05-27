@@ -11,9 +11,20 @@ public class Test {
         // test quickSort method
         Integer[] testArray = {2, 8, 7, 1, 5, 3, 6, 4};
         Sorting.quickSort(testArray, 0, testArray.length-1);
-        for (Integer each: testArray) {
+        printArray(testArray);
+
+        // test mergeSort method
+        Integer[] testArray1 = {2, 8, 7, 1, 5, 3, 6, 4};
+        Sorting.mergeSort(testArray1, 0, testArray1.length-1);
+        printArray(testArray1);
+    }
+
+
+    private static void printArray(Comparable[] n) {
+        for (Comparable each : n) {
             System.out.print(each + " ");
         }
         System.out.println();
     }
+
 }

@@ -76,6 +76,67 @@ public class Sorting {
         return i + 1;
     }
 
+
+    /**
+     * merge sort
+     * */
+    public static void mergeSort(Comparable[] data, int left, int right) {
+        if (left < right) {
+            int mid = (left + right)/2;
+            mergeSort(data, left, mid);
+            mergeSort(data, mid+1, right);
+
+            Comparable[] leftArray = new Comparable[mid - left + 1];
+            System.arraycopy(data, left, leftArray, 0, leftArray.length);
+
+            Comparable[] rightArray = new Comparable[right-mid];
+            System.arraycopy(data, mid+1, rightArray, 0, rightArray.length);
+
+            Comparable[] result = merge(leftArray, rightArray);
+            System.arraycopy(result, 0, data, left, result.length);
+        }
+    }
+
+    private static Comparable[] merge(Comparable[] a, Comparable[] b) {
+        Comparable[] result = new Comparable[a.length + b.length];
+        int resultIndex = 0;
+        int aIndex = 0;
+        int bIndex = 0;
+
+        while (resultIndex < result.length) {
+            if (aIndex<a.length && bIndex<b.length) {
+                if (a[aIndex].compareTo(b[bIndex])<=0) {
+                    result[resultIndex] = a[aIndex];
+                    aIndex++;
+                } else {
+                    result[resultIndex] = b[bIndex];
+                    bIndex++;
+                }
+            } else if (aIndex == a.length && bIndex < b.length) {
+                result[resultIndex] = b[bIndex];
+                bIndex++;
+            } else {
+                result[resultIndex] = a[aIndex];
+                aIndex++;
+            }
+            resultIndex++;
+        }
+        return result;
+    }
+
+//    private static void merge(Comparable[] data, int left, int mid, int right) {
+//        int n1 = mid - left + 1;  // the length of left array;
+//        int n2 = right - mid; // the length of right array;
+//
+//        Comparable[] leftArray = new Comparable[n1];
+//
+//
+//        Comparable[] rightArray = new Comparable[n2];
+//
+//
+//    }
+
+
     private static void swap(Comparable[] data, int index1, int index2) {
         Comparable tmp = data[index1];
         data[index1] = data[index2];
