@@ -1,23 +1,14 @@
-package recursion;
+package search_and_sorting;
 
 /**
- * Created by zw on 5/26/16.
+ * Created by zw on 5/27/16.
  */
-public class Tools {
-    public static boolean contains(String str, String pattern) {
-        if(pattern.length() == 0) {
-            return true;
-        }
-        if (str.length() < pattern.length()) {
-            return false;
-        }
+public class Sorting {
+    /***
+     * selection sort
+     */
+    public static void selectionSort(Comparable[] data) {
 
-        int i = str.indexOf(pattern.charAt(0));
-        if (i == -1) {
-            return false;
-        } else {
-            return contains(str.substring(i + 1), pattern.substring(1));
-        }
     }
 
 
