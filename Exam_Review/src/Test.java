@@ -17,6 +17,16 @@ public class Test {
         Integer[] testArray1 = {2, 8, 7, 1, 5, 3, 6, 4};
         Sorting.mergeSort(testArray1, 0, testArray1.length-1);
         printArray(testArray1);
+
+        // test bubbleSort method
+        Integer[] testArray2 = {2, 8, 7, 1, 5, 3, 6, 4};
+        Sorting.bubbleSort(testArray2);
+        printArray(testArray2);
+
+        // test bubbleSort method
+        Integer[] testArray3 = {2, 8, 7, 1, 5, 3, 6, 4};
+        Sorting.insertionSort(testArray3);
+        printArray(testArray3);
     }
 
 

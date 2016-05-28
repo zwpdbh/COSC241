@@ -46,7 +46,7 @@ public class Sorting {
     public static void bubbleSort(Comparable[] data) {
         for (int count = data.length - 1; count >= 0; count--) {
             for (int scan = 0; scan < count; scan++) {
-                if (data[scan].compareTo(scan + 1)>0) {
+                if (data[scan].compareTo(data[scan + 1])>0) {
                     swap(data, scan, scan+1);
                 }
             }
