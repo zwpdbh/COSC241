@@ -3,10 +3,12 @@
  */
 import recursion.Recursion;
 import search_and_sorting.Sorting;
+import randomize.Shuffler;
+
 public class Test {
     public static void main(String[] args) {
         // test recursion method contain
-        System.out.println(Recursion.contains("bcabaebdefg", "aeb"));
+        System.out.println(Recursion.contains("hello", "ee"));
 
         // test quickSort method
         Integer[] testArray = {2, 8, 7, 1, 5, 3, 6, 4};
@@ -27,6 +29,9 @@ public class Test {
         Integer[] testArray3 = {2, 8, 7, 1, 5, 3, 6, 4};
         Sorting.insertionSort(testArray3);
         printArray(testArray3);
+
+        Shuffler.shuffle(testArray);
+        printArray(testArray);
     }
 
 
