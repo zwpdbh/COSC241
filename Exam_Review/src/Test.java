@@ -48,7 +48,7 @@ public class Test {
             myStack.push(9);
             System.out.println(myStack.toString() + " size: " + myStack.getSize());
 
-            for (int i=8; i>=1; i--) {
+            for (int i=9; i>=1; i--) {
                 int tmp = myStack.pop();
                 System.out.println(myStack.toString() + " " + tmp);
             }

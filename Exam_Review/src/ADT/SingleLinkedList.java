@@ -57,7 +57,7 @@ public class SingleLinkedList<T> implements Iterable {
             throw new IndexOutOfBoundsException("Index out of range: " + index);
         }
         Node curr = first;
-        while (curr != null && index > 0) {  // be careful out index, exclusive 0 
+        while (curr != null && index > 0) {  // be careful out index, exclusive 0
             curr = curr.next;
             index --;
         }

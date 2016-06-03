@@ -7,12 +7,20 @@ public class LinkedStack<T> extends SingleLinkedList<T> implements Stack<T> {
 
     @Override
     public T pop() throws EmptyCollectionException {
-        return removeFirstNode().getValue();
+        try {
+            return removeFirstNode().getValue();
+        } catch (IndexOutOfBoundsException e) {
+            throw new EmptyCollectionException("The stack you are popping is empty");
+        }
     }
 
     @Override
     public T peak() throws EmptyCollectionException {
-        return getValueAt(0);
+        try {
+            return getValueAt(0);
+        } catch (IndexOutOfBoundsException e) {
+            throw new EmptyCollectionException("The stack you are peaking is empty");
+        }
     }
 
     @Override
