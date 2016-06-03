@@ -1,10 +1,12 @@
 /**
  * Created by zw on 5/26/16.
  */
+import ADT.EmptyCollectionException;
+import ADT.Stack;
 import recursion.Recursion;
 import search_and_sorting.Sorting;
 import randomize.Shuffler;
-
+import ADT.LinkedStack;
 public class Test {
     public static void main(String[] args) {
         // test recursion method contain
@@ -32,6 +34,31 @@ public class Test {
 
         Shuffler.shuffle(testArray);
         printArray(testArray);
+
+        LinkedStack<Integer> myStack = new LinkedStack<Integer>();
+        for (Integer each: testArray) {
+            myStack.add(each);
+        }
+
+        System.out.println(myStack.toString());
+        try {
+            myStack.pop();
+            System.out.println(myStack.toString());
+
+            myStack.push(9);
+            System.out.println(myStack.toString() + " size: " + myStack.getSize());
+
+            for (int i=8; i>=1; i--) {
+                int tmp = myStack.pop();
+                System.out.println(myStack.toString() + " " + tmp);
+            }
+        } catch (EmptyCollectionException e) {
+            System.out.println(e);
+        }
+
+//        for (Integer each: myStack) { // why?
+//            System.out.println(each);
+//        }
     }
 
 

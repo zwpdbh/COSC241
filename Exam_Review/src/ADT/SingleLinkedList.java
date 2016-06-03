@@ -7,20 +7,23 @@ import java.util.Iterator;
  */
 public class SingleLinkedList<T> implements Iterable {
     private Node first;
-    private int count;
+    private int size;
 
 
     public SingleLinkedList() {
         this.first = null;
-        this.count = 0;
+        this.size = 0;
     }
 
 
     public String toString() {
+        if (size == 0) {
+            return "";
+        }
         StringBuilder result = new StringBuilder("");
         Node node = this.first;
         while (node != null) {
-            result.append(node.value);
+            result.append(node.value + " ");
             node = node.next;
         }
         return result.toString();
@@ -29,13 +32,13 @@ public class SingleLinkedList<T> implements Iterable {
     public void add(T value) {
         Node newNode = new Node(value, this.first);
         this.first = newNode;
-        count++;
+        size++;
     }
 
     public void addAtEnd(T value) {
         if (first == null) {
             add(value);
-            count++;
+            size++;
             return;
         }
 
@@ -44,17 +47,17 @@ public class SingleLinkedList<T> implements Iterable {
             currentOne = currentOne.next;
         }
         currentOne.next = new Node(value, null);
-        count++;
+        size++;
     }
 
     public Node<T> getNodeAt(int index) throws IndexOutOfBoundsException {
         if (index < 0) {
             throw new IndexOutOfBoundsException("Negative index");
-        } else if (index+1 > count) {
+        } else if (index+1 > size) {
             throw new IndexOutOfBoundsException("Index out of range: " + index);
         }
         Node curr = first;
-        while (curr != null && index >= 0) {
+        while (curr != null && index > 0) {  // be careful out index, exclusive 0 
             curr = curr.next;
             index --;
         }
@@ -78,17 +81,20 @@ public class SingleLinkedList<T> implements Iterable {
 
     public Node<T> removeFirstNode() {
         Node result = getNodeAt(0);
-        count--;
+        first = first.next;
+        size--;
         return result;
     }
 
     public Node<T> removeLastNode() {
-        Node result = getNodeAt(count-1);
-        count--;
+        Node secondLastOne = getNodeAt(size - 2);
+        Node result = secondLastOne.next;
+        secondLastOne.next = null;
+        size--;
         return result;
     }
 
-    private class Node<T> {
+    public class Node<T> {
         private T value;
         private Node next;
 
@@ -96,6 +102,14 @@ public class SingleLinkedList<T> implements Iterable {
             this.value = value;
             this.next = next;
         }
+
+        public T getValue() {
+            return value;
+        }
+    }
+
+    public int getSize() {
+        return size;
     }
 
     @Override

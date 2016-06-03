@@ -14,7 +14,7 @@ public class ArrayStack<T> implements Stack<T> {
     }
 
     @Override
-    public void add(T element) {
+    public void push(T element) {
         if (count == Current_Capacity) {
             expandCapacity();
         }
