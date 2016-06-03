@@ -124,18 +124,6 @@ public class Sorting {
         return result;
     }
 
-//    private static void merge(Comparable[] data, int left, int mid, int right) {
-//        int n1 = mid - left + 1;  // the length of left array;
-//        int n2 = right - mid; // the length of right array;
-//
-//        Comparable[] leftArray = new Comparable[n1];
-//
-//
-//        Comparable[] rightArray = new Comparable[n2];
-//
-//
-//    }
-
 
     private static void swap(Comparable[] data, int index1, int index2) {
         Comparable tmp = data[index1];
