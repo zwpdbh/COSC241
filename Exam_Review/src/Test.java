@@ -93,10 +93,10 @@ public class Test {
             secondHeap.add(random.nextInt(20) + 1);
         }
         System.out.println("Heap: " + secondHeap.toString());
-        for (int i=secondHeap.getHeapSize(); i>0; i--) {
+        for (int i=secondHeap.getHeapSize() + 1; i>0; i--) {
             try {
                 //System.out.print("available heap node: " + myHeap.getHeapSize());
-                System.out.println(secondHeap.removeMax() + " heapsize> " + secondHeap.getHeapSize() + " capacity> " + secondHeap.getCapacity());
+                System.out.println(secondHeap.removeMax() + "\t heapsize: " + secondHeap.getHeapSize());
             } catch (EmptyCollectionException e) {
                 System.out.println(e);
             }
