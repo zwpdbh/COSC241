@@ -10,6 +10,7 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>{
 
     public ArrayHeap() {
         a = (T[]) new Comparable[capacity]; // this should be comparable Object
+        heapSize = 0;
     }
 
     @Override
@@ -74,8 +75,7 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>{
         }
     }
 
-    public void buildHeap(T[] a) {
-        this.heapSize = a.length;
+    public void buildHeap() {
         for (int index = (a.length) / 2 -1; index >= 0; index--) {
             heapify(a, index);
         }
@@ -123,5 +123,15 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>{
 
     public int getCapacity() {
         return capacity;
+    }
+
+    public void heapSort() {
+        int backupHeapSize = heapSize;
+        for (int i = heapSize-1; i>=1; i--) {
+            swap(a, 0, heapSize-1);
+            heapSize--;
+            heapify(a, 0);
+        }
+        heapSize = backupHeapSize;
     }
 }

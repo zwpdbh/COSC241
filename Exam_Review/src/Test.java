@@ -87,12 +87,15 @@ public class Test {
             }
         }
 
+        // add 50 elements into the heap
         ArrayHeap<Integer> secondHeap = new ArrayHeap<>();
         for (int i=1; i<=50; i++){
             Random random = new Random();
             secondHeap.add(random.nextInt(20) + 1);
         }
         System.out.println("Heap: " + secondHeap.toString());
+
+        // testing removing 50 element from heap
         for (int i=secondHeap.getHeapSize() + 1; i>0; i--) {
             try {
                 //System.out.print("available heap node: " + myHeap.getHeapSize());
@@ -102,6 +105,27 @@ public class Test {
             }
         }
 
+        // add 50 elements into heap and sort them.
+        for (int i=1; i<=50; i++){
+            Random random = new Random();
+            secondHeap.add(random.nextInt(20) + 1);
+        }
+        System.out.println("Heap: " + secondHeap.toString());
+
+        secondHeap.heapSort();
+        System.out.println("Heapsort result: " + secondHeap.toString());
+        secondHeap.buildHeap();
+        System.out.println("Restore sorted array back to heap: " + secondHeap.toString());
+
+        secondHeap.heapSort();
+        System.out.println("Heapsort result: " + secondHeap.toString());
+        secondHeap.buildHeap();
+        System.out.println("Restore sorted array back to heap: " + secondHeap.toString());
+
+        secondHeap.heapSort();
+        System.out.println("Heapsort result: " + secondHeap.toString());
+        secondHeap.buildHeap();
+        System.out.println("Restore sorted array back to heap: " + secondHeap.toString());
     }
 
 
