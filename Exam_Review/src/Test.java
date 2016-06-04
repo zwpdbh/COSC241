@@ -1,14 +1,20 @@
-/**
- * Created by zw on 5/26/16.
- */
 import ADT.EmptyCollectionException;
-import ADT.Stack;
 import recursion.Recursion;
 import search_and_sorting.Sorting;
 import randomize.Shuffler;
 import ADT.LinkedStack;
+import ADT.ArrayHeap;
+
+import java.util.Random;
+
+/**
+ * Created by zw on 5/26/16.
+ */
+
 public class Test {
     public static void main(String[] args) {
+        // Test sorting algorithms
+
         // test recursion method contain
         System.out.println(Recursion.contains("hello", "ee"));
 
@@ -28,37 +34,74 @@ public class Test {
         printArray(testArray2);
 
         // test bubbleSort method
-        Integer[] testArray3 = {2, 8, 7, 1, 5, 3, 6, 4};
+        Integer[] testArray3 = {1, 2, 3, 4};
         Sorting.insertionSort(testArray3);
         printArray(testArray3);
 
         Shuffler.shuffle(testArray);
         printArray(testArray);
 
-        LinkedStack<Integer> myStack = new LinkedStack<Integer>();
-        for (Integer each: testArray) {
-            myStack.add(each);
-        }
 
-        System.out.println(myStack.toString());
-        try {
-            myStack.pop();
-            System.out.println(myStack.toString());
-
-            myStack.push(9);
-            System.out.println(myStack.toString() + " size: " + myStack.getSize());
-
-            for (int i=9; i>=1; i--) {
-                int tmp = myStack.pop();
-                System.out.println(myStack.toString() + " " + tmp);
-            }
-        } catch (EmptyCollectionException e) {
-            System.out.println(e);
-        }
+        // Test on Stack
+//        LinkedStack<Integer> myStack = new LinkedStack<Integer>();
+//        for (Integer each: testArray) {
+//            myStack.add(each);
+//        }
+//
+//        System.out.println(myStack.toString());
+//        try {
+//            myStack.pop();
+//            System.out.println(myStack.toString());
+//
+//            myStack.push(9);
+//            System.out.println(myStack.toString() + " size: " + myStack.getSize());
+//
+//            for (int i=8; i>=1; i--) {
+//                int tmp = myStack.pop();
+//                System.out.println(myStack.toString() + " " + tmp);
+//            }
+//        } catch (EmptyCollectionException e) {
+//            System.out.println(e);
+//        }
 
 //        for (Integer each: myStack) { // why?
 //            System.out.println(each);
 //        }
+
+
+        // Test on Heap
+        System.out.println("<Heap testing>");
+        ArrayHeap<Integer> myHeap = new ArrayHeap<>();
+        Shuffler.shuffle(testArray3);
+        printArray(testArray3);
+        for (Integer each: testArray3) {
+            myHeap.add(each);
+        }
+        System.out.println("myHeap: " + myHeap.toString());
+        for (int i=myHeap.getHeapSize(); i>0; i--) {
+            try {
+                //System.out.print("available heap node: " + myHeap.getHeapSize());
+                System.out.println(myHeap.removeMax());
+            } catch (EmptyCollectionException e) {
+                System.out.println(e);
+            }
+        }
+
+        ArrayHeap<Integer> secondHeap = new ArrayHeap<>();
+        for (int i=1; i<=50; i++){
+            Random random = new Random();
+            secondHeap.add(random.nextInt(20) + 1);
+        }
+        System.out.println("Heap: " + secondHeap.toString());
+        for (int i=secondHeap.getHeapSize(); i>0; i--) {
+            try {
+                //System.out.print("available heap node: " + myHeap.getHeapSize());
+                System.out.println(secondHeap.removeMax() + " heapsize> " + secondHeap.getHeapSize() + " capacity> " + secondHeap.getCapacity());
+            } catch (EmptyCollectionException e) {
+                System.out.println(e);
+            }
+        }
+
     }
 
 

@@ -3,10 +3,10 @@ package ADT;
 /**
  * Created by zw on 6/3/16.
  */
-public interface Heap<T> {
-    public T max();
+public interface Heap<T>  {
+    public T max() throws EmptyCollectionException;
 
-    public T removeMax();
+    public T removeMax() throws EmptyCollectionException;
 
-    public boolean add(T element);
+    public void add(T element);
 }
