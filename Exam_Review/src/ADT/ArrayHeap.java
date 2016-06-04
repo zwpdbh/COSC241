@@ -24,7 +24,7 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>{
     @Override
     public T removeMax() throws EmptyCollectionException {
         if (heapSize == 0) {
-            throw new EmptyCollectionException("The heap is empty: cannot return root value and remove root");
+            throw new EmptyCollectionException("The heap is empty: cannot remove root and return root value");
         }
         T result = a[0];
         swap(a, 0, heapSize-1);
@@ -76,7 +76,7 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>{
     }
 
     public void buildHeap() {
-        for (int index = (a.length) / 2 -1; index >= 0; index--) {
+        for (int index = ((a.length)/2 -1); index >= 0; index--) {
             heapify(a, index);
         }
     }
