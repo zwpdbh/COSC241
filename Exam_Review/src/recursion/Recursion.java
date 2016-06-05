@@ -19,4 +19,15 @@ public class Recursion {
             return contains(str.substring(i + 1), pattern.substring(1));
         }
     }
+
+    public static String removeDups(String s) {
+        if (s.length() <= 1) return s;
+        char c0 = s.charAt(0);
+        String r = removeDups(s.substring(1, s.length()));
+        if (r.charAt(0) == c0) {
+            return r;
+        } else {
+            return c0 + r;
+        }
+    }
 }

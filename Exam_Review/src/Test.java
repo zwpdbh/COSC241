@@ -126,6 +126,9 @@ public class Test {
         System.out.println("Heapsort result: " + secondHeap.toString());
         secondHeap.buildHeap();
         System.out.println("Restore sorted array back to heap: " + secondHeap.toString());
+
+        String test = Recursion.removeDups("aabbcc");
+        System.out.print(test);
     }
 
 
