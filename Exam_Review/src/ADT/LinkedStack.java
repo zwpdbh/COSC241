@@ -15,7 +15,7 @@ public class LinkedStack<T> extends SingleLinkedList<T> implements Stack<T> {
     }
 
     @Override
-    public T peak() throws EmptyCollectionException {
+    public T peek() throws EmptyCollectionException {
         try {
             return getValueAt(0);
         } catch (IndexOutOfBoundsException e) {

@@ -9,7 +9,7 @@ public interface Stack<T> {
 
     public void push(T element);
 
-    public T peak() throws EmptyCollectionException;
+    public T peek() throws EmptyCollectionException;
 
     public boolean isEmpty();
 

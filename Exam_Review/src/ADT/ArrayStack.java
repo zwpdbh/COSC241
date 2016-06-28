@@ -36,7 +36,7 @@ public class ArrayStack<T> implements Stack<T> {
     }
 
     @Override
-    public T peak() throws EmptyCollectionException {
+    public T peek() throws EmptyCollectionException {
         if (isEmpty()) {
             throw new EmptyCollectionException("The stack you are peaking is empty");
         }
